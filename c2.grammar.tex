@@ -1,4 +1,33 @@
-\chapter{Grammar Design }
+\chapter{Grammar Design}
 
-\section{Category of Grammar}
+
+\section{The Hierarchy of Grammars}
+Noam Chomsky has describe three model of grammar ["Three models for the description of language"]  and this grammar model has significantly effect the design of computer programming language.
+
+
+Chomsky define a set of rule upon the formal grammar and categorize them into different levels.
+
+A formal grammar of this type consists of:
+\begin{itemize}
+\item a finite set of terminal symbols.
+\item a finite set of non-terminal symbols.
+\item a finite set of project rules.
+\item a start symbol.
+\end{itemize}
+
+From previous formal grammar definition, legitimate production rules can be written as 
+ \[ S \mapsto aS  \,and \, S \mapsto ab \]
+ 
+In this example,we can assume that the grammar consists of two projection rules and the starting symbol is $ S $.The terminal symbols are lower letters $ \{a ,b\} $ . From this example, If we start from the either rule 1 or rule 2 ,we could derive a  grammar of $ \{ a^n b | n>1  \}$ ,which can be enumerate like $ \{aab,aaab,aaaab,\cdots \} $.
+
+The Chomsky hierarchy consists of the 4 levels:
+\begin{itemize}
+\item Type-0 grammars. It is a unrestricted grammars that include all.
+\item Type-1 grammars.
+\item Type-2 grammars.
+\item Type-3 grammars.
+\end{itemize}
+
+
+\section {Extended Backus–Naur Form}
 
