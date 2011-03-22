@@ -1,0 +1,40 @@
+%=========================================================================
+% This lays out the title page. 
+% DO NOT EDIT THIS PAGE except to uncomment the text below -  
+% "This Report is submitted..." to reflect the programme title.
+%-------------------------------------------------------------------------
+
+% Commands to make entry and formatting of Title/Author info more intuitive
+\newcommand\ProjectTitle[1]{\begin{LARGE}\textsc{#1}\end{LARGE}\\[1.25cm]}
+\newcommand\InterimReport[1]{\begin{LARGE}\textsc{#1}\end{LARGE}\\[1.25cm]}
+\newcommand\AuthorName[2]
+{\begin{LARGE}#1 \textsc{#2}\end{LARGE}\\[0.25cm]}
+\newcommand\AuthorEmail[1]{\begin{Large}\texttt{#1}\end{Large}\\[0.75cm]}
+\newcommand\Supervisor[2]{\begin{large}\textit{Supervisor: }#1 \textsc{#2}\end{large}\\[0.25cm]}
+\newcommand\SecondReader[2]{\begin{large}\textit{2nd Reader: }#1 \textsc{#2}\end{large}}
+
+\begin{titlepage}
+\begin{center}
+
+% Upper part of the page contains DIT logo disable the dit logo
+\includegraphics[scale=0.60]{pic/s1.png}\\[2.5cm]
+ 
+% Title 
+\ProjectTitle{\inProjectTitle}
+\InterimReport{\inInterimReport}
+% Author and supervisor
+\AuthorName{\inAuthorFName}{\inAuthorLName} 
+\AuthorEmail{\inAuthorEmail}
+\Supervisor{\inSupervisorFName}{\inSupervisorLName}
+\SecondReader{\inSecondReaderFName}{\inSecondReaderLName}
+
+% Bottom of the page
+\vfill
+{\large \today}\\[0.5cm]  % Date compiled
+
+This Report is submitted in partial fulfillment of the requirements for the award of the degree of
+\textbf{BSc Computer Science}  % DT228
+% \textbf{BSc Computing}  % DT211
+of the School of Computing, College of Sciences and Health, Dublin Institute of Technology.
+\end{center}
+\end{titlepage}

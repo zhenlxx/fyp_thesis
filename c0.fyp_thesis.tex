@@ -1,0 +1,105 @@
+%=========================================================================
+% This is a template for a Final Year project, which is essentially a 
+% document of type "report" with a modified title page
+% To create a pdf compile this file using PDFLaTeX. In Texmaker this is 
+% the PDFLAT button on the toolbar. You don't need to complie any 
+% intermediate formats such as .dvi.
+%=========================================================================
+
+%=========================================================================
+% This section sets up the standard layout and includes necessary latex 
+% packages.
+%-------------------------------------------------------------------------
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{listings} 
+\usepackage[gen]{eurosym}          
+\usepackage{url}
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{hcode}{Verbatim}{fontsize=\small}
+\DefineVerbatimEnvironment{hexample}{Verbatim}{fontsize=\small}
+\newcommand{\ignore}[1]{}
+
+
+\begin{document}
+
+%=========================================================================
+% In
+%-------------------------------------------------------------------------
+\input{BasicInfo.tex}			% student edits this - title, name, email etc.
+\input{TitlePage.tex}			% no editing required here
+\input{Abstract.tex}
+\input{Declaration.tex}			% needed only if the document must have a Declaration
+\input{Acknowledgements.tex}
+
+%=========================================================================
+% Use the next 3 commands to include Abstratct/Declaration/Acknowlegdements in 
+% the table of contents 
+%-------------------------------------------------------------------------
+%\addcontentsline{toc}{section}{Abstract}
+%\addcontentsline{toc}{section}{Declaration}
+%\addcontentsline{toc}{section}{Acknowledgements}
+
+%=========================================================================
+% Autogenerate tables of contents, figures and tables
+%-------------------------------------------------------------------------
+\tableofcontents
+\listoffigures
+%\listoftables
+%\lstlistoflistings
+
+%=========================================================================
+%  Set up environment for code listings
+%-------------------------------------------------------------------------
+\lstset{
+	basicstyle=\small,          			% print whole listing small
+	keywordstyle=\bfseries\underbar,		% bold underline keywords
+	stringstyle=\ttfamily,      			% typewriter type for strings
+	identifierstyle=\bfseries,				% bold identifiers
+	showstringspaces=false,     			% no special string spaces
+ 	numbers=left, 
+	numberstyle=\tiny, 
+	stepnumber=1, numbersep=5pt,
+	breaklines,
+	breakatwhitespace	
+	}
+
+%=========================================================================
+% Actual chapters start here.
+% 
+% The basic idea is that each chapter is a separate .tex file which is 
+% included at compile time. Each file should have a meaningful filename.
+%-------------------------------------------------------------------------
+\input{c1.intro.tex}
+\input{c2.tech.tex}
+\input{c5.futurework.tex}
+
+
+
+
+%=========================================================================
+% This section renders the bibliography
+%-------------------------------------------------------------------------
+\clearpage										% these two lines needed to add Bibliography
+\addcontentsline{toc}{chapter}{Bibliography}   	% to Table of Contents
+\bibliographystyle{plain}
+\bibliography{Biblio1} 		% You can include multiple files. 
+							% There is no whitespace between the commas and the next bib file.
+
+
+%=========================================================================
+% Everything after here is an appendix
+%-------------------------------------------------------------------------
+\appendix	
+
+%\input{References.tex}
+%\input{Glossary.tex}
+%\input{Appendix1.tex}
+
+\end{document}
