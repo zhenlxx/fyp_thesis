@@ -1,7 +1,7 @@
 \chapter{Grammar Design}
+\section{Parsing technologies}
 
-
-\section{The Hierarchy of Grammars}
+\subsection{The Hierarchy of Grammars}
 Noam Chomsky has describe three model of grammar ["Three models for the description of language"]  and this grammar model has significantly effect the design of computer programming language.
 
 
@@ -13,7 +13,7 @@ A formal grammar of this type consists of:
 \item a finite set of non-terminal symbols.
 \item a finite set of project rules.
 \item a start symbol.
-\end{itemize}
+\end{itemize} \cite{aho1986compilers}
 
 From previous formal grammar definition, legitimate production rules can be written as 
  \[ S \mapsto aS  \,and \, S \mapsto ab \]
@@ -28,6 +28,66 @@ The Chomsky hierarchy consists of the 4 levels:
 \item Type-3 grammars.
 \end{itemize}
 
+\subsection {Backus–Naur Form and Extended Backus–Naur Form}
+The Backus-Naur Form(BNF) is a metalanguage to write the production rule that expressing the type-2 grammar (context-free grammar).It  restricts the appearance of terminal and non-terminal in each side of the production equation.A canonical BNF production rule may like follow,
+ \[   <symbol> ::= \_\_expression\_\_ \]
+ 
+The left side of the equation can only be non-terminal thus enclosed with $<>$ .The right hand side can be terminals and non-terminals,a vertical bar '|' is used to represent choice between terminal and non-terminals.\\
 
-\section {Extended Backus–Naur Form}
+The  Extended Backus–Naur Form (EBNF) and extension upon the BNF.Three regular expression qualifier is added to simplified some expression,they are,
+\begin{itemize}
+\item ? : which means that the symbol (or group of symbols in parenthesis) to the left of the operator is
+optional (it can appear zero or one times)
+\item * : which means that something can be repeated any number of times (and possibly be skipped
+altogether)
+\item + : which means that something can appear one or more times 
+\end{itemize} \cite{book}
+
+Recrusive rules of BNF  like 
+\[   1. <exp> := <exp> | sub \]
+\[	 2. <exp> := sub     \]
+ 
+that expressing a sequence of a particular syntactic element can be simplified using quantifier in EBNF as $ <exp>:=sub+ $
+
+
+
+\section{Parser Generator Haskell Happy}
+Happy is a parser generator system for Haskell, similar to the tool `yacc' for C. Like `yacc', it takes a file containing an annotated BNF specification of a grammar and produces a Haskell module containing a parser for the grammar.
+[The Parser Generator for Haskell] 
+
+By using its own EBNF like syntax,used could write an parser description.The happy parser generator are able to recognize and compile it into Haskell source code.
+
+
+\section{Monadic Parsing using Parsec}
+In the early,stage of this project,parse is build using parse C,
+Parsec is an industrial strength, monadic parser combinator library for Haskell. It can parse context-sensitive, infinite look-ahead grammars but it performs best on
+predictive (LL[ Compilers: principles, techniques and tools.]) grammars. Combinator parsing is well known in the literature
+and offers several advantages to YACC or event-based parsing. [Parsec, a fast combinator parser] 
+
+Compared toe parser generator , monadic parsing has two major benifits
+1. No need to learn additional parser generator grammar since parser combinator is written in the same language. 2.parser can be adjust easily .
+
+
+
+
+
+
+\section {Lexical analysis}
+Before parsing,the lexical analsier will scan the source code and generate a sequence of token.
+
+
+\subsection{Regular Expression and token}
+Tokens are defined by using regular expression,
+
+\subsection{The Lexer Generator Alex}
+In this project, the Alex Haskell Lexer generator is apply in generating token streams.
+
+each token can be defined using regular expression.
+
+
+
+\section{Language definition}
+
+Production rule in EBNF 
+
 
