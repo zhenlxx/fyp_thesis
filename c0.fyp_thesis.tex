@@ -10,7 +10,7 @@
 % This section sets up the standard layout and includes necessary latex 
 % packages.
 %-------------------------------------------------------------------------
-\documentclass[11pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 \usepackage[utf8x]{inputenc}
 \usepackage{ucs}
 \usepackage{amsmath}
@@ -22,6 +22,7 @@
 \usepackage[gen]{eurosym}          
 \usepackage{url}
 \usepackage{fancyvrb}
+%\usepackage{minted}
 \DefineVerbatimEnvironment{hcode}{Verbatim}{fontsize=\small}
 \DefineVerbatimEnvironment{hexample}{Verbatim}{fontsize=\small}
 \newcommand{\ignore}[1]{}
@@ -78,6 +79,7 @@
 %-------------------------------------------------------------------------
 \input{c1.intro.tex}
 \input{c2.grammar.tex}
+\input{c3.monad.tex}
 \input{c5.futurework.tex}
 
 

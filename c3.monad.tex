@@ -1,11 +1,38 @@
-\section{Monad in Haskell}
-\subsection{Haskell and Category Theory}
+\chapter{Monad in Haskell}
+\section{Haskell and Category Theory}
+Category theory is a general theory that examine and organize mathematical object like set ,function,function domains Cartesian-set.
+
+A Category $C $ in category theory is defined below :
+\begin{enumerate}
+\item a collection of objects 
+\item a collection of arrows (often call morphism) 
+\item operations assigning to each arrow $f$ an object $dom\;f$,its domain ,and an object $cod\;f$,its co domain.
+\item a composition operator assigning to each pair of arrows $f and g$,with $cod\;f = dom\;g$,a composite arrow $ g \circ f:dom\;f \rightarrow  cod\;g$ , satisfying the following associative law: \\
+For any arrow $f: A \rightarrow B,g:B \rightarrow C,and\;h: C\rightarrow D$(with A,B,C and D not necessarily distinct),
+$$h\circ (g\circ f) = (h\circ g)\circ f$$
+\item for each object A, an identify arrow $id_{a}: A \rightarrow A$ satisfying the following identity law:\\
+For any arrow $ f: A \rightarrow B,$ 
+$$ id_{a} \circ f = f  \;and\;  f\circ id_{a} = f. $$
+\end{enumerate}\cite{pierce_basic_1991}
+
+Functions are the first member of the program in functional programming,since no size affect is not allow ,there should be a way to combine the all kinds of functions to from a new function instead of just simply chain the input output of each function as the former will generate intermediate output.
 
 
-\subsection{Monadic Function}
-
-\subsection{Using Monad Operator to Combine Monadic Function}
+For instance ,counting the file of java source code in current directory can be written as follow:
 
 
-\subsection{Do Notation - type safe imperative language}
+	$$ ls-al . | grep *.txt| wc -l $$ 
+	
+	
+To substantiate the this concept , let's use the map/fold fusion technique as an example.
+
+
+
+
+
+\section{Monadic Function}
+\section{Using Monad Operator to Combine Monadic Function}
+
+\section{Type system in Haskell}
+\section{Do Notation - type safe imperative language}
 
