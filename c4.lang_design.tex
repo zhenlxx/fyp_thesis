@@ -1,2 +1,28 @@
-\chapter{Language Design}|
+\chapter{Language Interpreter Design}
 
+\section{Type System}
+
+
+\subsection{Dynamic Typing and Static Typing}
+A programming language is said to use static typing when type checking is performed during compile-time as opposed to run-time. 
+For example , you have to specify the type explicitly and the compile will the the type correctness of a variable.A variable of a specified type can not assign to another value of other type.
+
+\begin{tabular}{p{5cm}|p{5cm}}
+\hline
+Static Typing & Dynamic Typing \\
+\hline
+int a =1;\par \textbf{/*a is of type int */} \par int a="a string"; \par \textbf{ /* its not valid to assign a string to a variable that has type int */} & a=1; \par \textbf{/* does not need to specified a type for this variable */} \par a ="a string"; \par
+\textbf{/* it valid to change the type of the variable */} \\ 
+\hline
+\end{tabular} \\\\
+In my project, I used the dynamic typing scheme,which is ,does not need to specify any type of variable and able to assign any type of primitives to a variable.
+
+\subsection{Strong Typing and Weak Typing}
+
+
+
+
+\section{Problem and resolution in writing BNF/EBNF rules}
+\subsubsection{Shift//Reduce Problem}
+
+\subsubsection{Reduce//Reduce Problem}
