@@ -18,6 +18,27 @@ int a =1;\par \textbf{/*a is of type int */} \par int a="a string"; \par \textbf
 In my project, I used the dynamic typing scheme,which is ,does not need to specify any type of variable and able to assign any type of primitives to a variable.
 
 \subsection{Strong Typing and Weak Typing}
+a language is said to be strong typing is that it place restriction in operation where data type can not be intermix.
+
+
+\begin{tabular}{p{6cm}|p{6cm}}
+\hline Strong Typing & Weak Typing  \\ 
+\hline a=123; \par 
+\textbf{/* a is a number */} \par 
+b="123" \par  
+\textbf{/* b is a string */} \par 
+c=a+b \textbf{/* return type error */}  &  
+a = 123; \par 
+b = "123"; \par
+c = a+b; \par 
+\textbf{/* either a will be convert to a string or b will be convert to a number */}
+
+\\ 
+\hline 
+\end{tabular} 
+
+In my project,I have implemented a weak typing system .I have design an statement call generic expression , which allow different kinds of value to intermix with each other. An expression like "12343" + 1232 -324 can be parse as follow syntax tree.
+
 
 
 
@@ -26,3 +47,5 @@ In my project, I used the dynamic typing scheme,which is ,does not need to speci
 \subsubsection{Shift//Reduce Problem}
 
 \subsubsection{Reduce//Reduce Problem}
+
+

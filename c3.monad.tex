@@ -1,4 +1,4 @@
-\chapter{Monad in Haskell}
+\chapter{Monads and Haskell}
 \section{Haskell and Category Theory}
 Category theory is a general theory that examine and organize mathematical object like set ,function,function domains Cartesian-set.
 
@@ -46,6 +46,67 @@ $ sum_of_square = foldr (\\x y -> x^2 + y) 0 $
 
 
 \section{Monadic Function}
+\subsection{Data Type Constructor}
+
+
+
+
+\section{Monads}
+In Haskell,monad is used an abstract data type constructor to represent multiple kinds of computation such as a computation that will do IO action,or a computation that has state.Those computations are in-pure because that manipulate the outside world.In Haskell.Mathematically, monads are governed by set of laws that should hold for the monadic operations [A Gentle Introduction to Haskell, Version 98]. There are two basic law in monads ,they are bind return .The Monad class is defined as follow:
+\begin{hcode}
+class Monad m where
+  (>>=) :: m a -> (a -> m b) -> m b
+  (>>) :: m a -> m b -> m b
+  return :: a -> m a
+  fail :: String -> m a
+\end{hcode}
+
+The return function can inject a value into monadic type.
+The bind function can combine two monadic function, one should be of type \textbf{m a} and another should be of type \textbf{a -$>$ m b} .
+
+Beside this two function,Haskell also provide other monadic operator which all derive from \textbf{return} and \textbf{bind},they are:
+\begin{hexample}
+liftM :: (Monad m) => (a1 -> r) -> m a1 -> m r
+liftM2  :: (Monad m) => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
+ap :: (Monad m) => m (a -> b) -> m a -> m b
+(=<<) :: (Monad m) => (a -> m b) -> m a -> m b
+\$ ::(m a -> m b) -> m a -> m b 
+\end{hexample}
+
+These monadic operation is define using the bind and return.For example ,liftM is defined by bind and return like 
+\begin{hcode}
+liftM f m1              = do { x1 <- m1; return (f x1) }
+\end{hcode}
+Therefore,when defining a monad,only bind and return need to be specified.
+
+\subsubsection{Monadic Characteristic}
+For all monad instance ,beside define three monadic operator ,they must apply three compulsory monad laws:
+
+\begin{hcode}
+"Left identity": return a >>= f  ≡  f a
+"Right identity": m >>= return  ≡  m
+"Associativity": (m >>= f) >>= g  ≡  m >>= (\x -> f x >>= g)
+\end{hcode}
+
+In monad instance ,these monad laws will become a restriction of the operation when combining monadic function using monadic operation,these restriction will be discussed in following sections.
+
+
+\subsection{IO Monad}
+Haskell use IO monad to limit the IO sequence.Monadic operation are used to represent IO processing pipeline,
+One significant different between IO monad an other monad is that it does not provide escape function like  
+\begin{hcode}
+IO String ->String
+\end{hcode}
+
+\subsection{State Monad}
+The State Monad is defined as follow 
+\begin{hcode}
+newtype State s a = State {runState :: s -> (a, s)}
+\end{hcode}
+\subsection{List Monad}
+Haskell try to use list monad to represent a calculation that return multiple result.
+
+
 \section{Using Monad Operator to Combine Monadic Function}
 
 \section{Type system in Haskell}
