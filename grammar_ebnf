@@ -1,0 +1,43 @@
+Module = MainFunc Function*
+
+Function =  function '('  name* ')' '{' Stmts '}'
+
+MainFunc = 'program' name '(' ')' '{' Stmts '}'
+
+List = '['   ']' | '[' ListMember ( ',' ListMember)*   ']'
+
+ListMember = GenericExp | List
+
+Stmts = Stmt*
+
+
+
+Stmt = 
+	Assign ';' |
+	Invok ';' |
+	'break' ';' |
+	'continue' ';'  |
+	WhileBlock  |
+	IfBlock   |
+	ForBlock  |
+	ReturnStmt
+	
+ReturnStmt = 'return'  GenericExp
+
+
+Assign = name '=' Invoke |
+	 name '=' GenericExp |
+	 name '=' List
+	 
+	 
+ForBlock = for '(' Assign ';'  GenericExp Assign ')' '{' Stmts '}'
+
+
+Invoke = name '(' GenericExp* ')'
+
+
+
+WhileBlock =  while '(' GenericExp ')'  '{' Stmts '}' 
+
+
+IfBlock = if '(' GenericExp ')' '{' Stmts '}'  ( else '{'  Stmts '} ')?
