@@ -173,6 +173,9 @@ False // primitives
 
 1 + "a string"
 1 * 2 + 1  
+a && b
+a || b
+! a
 a[2] //get the third element of a list
 a[1,2]  // get the element in a multi dimension list
 
@@ -182,6 +185,78 @@ a[num]
 
 
 \subsubsection*{List}
+The language support polymorphic list,the element of a list can be an expression or an list,thus the list support multi dimension list.If the element is an expression,the interpreter will evaluate it and store its result value in its internal format.
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.69\textwidth]{pic/c4/list.png}
+	\caption{Expression Syntax Diagram}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.45\textwidth]{pic/c4/list_member.png}
+	\caption{List Member Syntax Diagram}
+\end{figure}
+
+Code Example
+
+\begin{lstlisting}[language=java]
+a = [1,2,3];
+a = ["string",1,2,3];
+a = [var1,var2,"other",var1+var2,True&&False]; 
+a = [[1,2,3,4,5,6,7] , 1, 23.32, 5];
+a = [1,2,3,4,5],[1,2,3,4],[3,45,43]]; // declare a multi dimension list
+
+member = a[1] // get the second element of a list
+\end{lstlisting}
+
+
+\subsection{Code Block}
+Code blocks including if block,while block and for block are statements.Code block may contains other statements which allow nested code block to be defined.
 
 
 
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.95\textwidth]{pic/c4/while_block.png}
+	\caption{While Block Syntax Diagram}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.95\textwidth]{pic/c4/if_block.png}
+	\caption{If Block Syntax Diagram}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.95\textwidth]{pic/c4/for_block.png}
+	\caption{for Block Syntax Diagram}
+\end{figure}
+
+Code Example,
+\begin{lstlisting}[language=java]
+if (a < 1){
+	a = a+1;
+	if ( a == 1){
+		a = a-1;
+	}	
+}
+else{
+	a = a-1;
+} // nested if loop
+
+
+while (a<10){
+	a= a+1;
+} // while block
+
+
+for (i =0;i<10;i=i+1){
+	sum = sum+ i;
+}
+
+\end{lstlisting}

@@ -44,7 +44,6 @@ IfBlock = if '(' GenericExp ')' '{' Stmts '}'  ( else '{'  Stmts '} ')?
 
 
 
-
 GenericExp = 
 	'(' GenericExp ')' |
 	'!' GenericExp |
