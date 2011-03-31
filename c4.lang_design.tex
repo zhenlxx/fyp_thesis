@@ -46,10 +46,110 @@ In my project,I have implemented a weak typing system .I have design an statemen
 
 
 
-
 \section{Problem and resolution in writing BNF/EBNF rules}
-\subsubsection{Shift//Reduce Problem}
+\subsection{Shift//Reduce Problem}
 
-\subsubsection{Reduce//Reduce Problem}
+\subsection{Reduce//Reduce Problem}
+
+\section{Syntax Design}
+
+\subsection{The Main Structure}
+A module is the minimum executable unit in \textbf{yun}.It is composed by one main function and serveral functions.The main function is a entry point,it may invoke other functions.
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.90\textwidth]{pic/c4/module.png}
+	\caption{Module Syntax Diagram}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.90\textwidth]{pic/c4/main_function.png}
+	\caption{Main Function Syntax Diagram}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=1.00\textwidth]{pic/c4/function.png}
+	\caption{Function Syntax Diagram}
+\end{figure}
+
+
+Possible program code may looks like follow,
+
+\begin{lstlisting}[language=java]
+program main ()
+{
+ 	result = sum(1,2,3);
+ 	// more code
+ 	
+}
+
+
+function sum (var1,var2,var3)
+{
+	// body of the functions
+}
+
+// may be more functions
+\end{lstlisting}
+
+
+\subsection{Statements}
+Statements  comprise the body of a function.A statement may be a assignment,break and continue sentence,return sentence.WhileBlocks ,IfBlocks,ForBlocks are all statements.What's more , WhilcBlock,IfBlock,ForBlock are recursively defined by statements as well.This allow nested for loop ,nested while loop and etc.
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.45\textwidth]{pic/c4/stmt.png}
+	\caption{Statement Syntax Diagram}
+\end{figure}
+
+The following code can be consider as a statement of the language
+\begin{lstlisting}[language=java]
+while ()
+{
+} /* the while statement */
+
+if ()
+{
+}
+else
+{
+} // the if else statement
+
+for ( )
+{
+	for ()
+	{
+	}
+} // nested for loop 
+
+
+a = 1 ; // assignment statement, assign a value or and an expression to a variable
+
+fib(5);  // function invocation statement
+
+
+\end{lstlisting}
+
+\subsubsection{Assignment}
+There are three type of assignment in the language .They are ,
+\begin{itemize}
+\item Function invocation assignment.Assign the return result to a variable.
+\item Generic expression assignment.Assign the result of an expression to a variable.
+\item List assignment.Assign a list to a variable.
+\end{itemize}
+As \textbf{yun} is an imperative language,the right side of the assignment operator will be evaluation immediately. In other word,the language is strict.
+
+
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.65\textwidth]{pic/c4/assign.png}
+	\caption{Assign Statement Syntax Diagram}
+\end{figure}
+
+\subsection{Generic Expression}
+
 
 
