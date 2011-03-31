@@ -41,3 +41,29 @@ WhileBlock =  while '(' GenericExp ')'  '{' Stmts '}'
 
 
 IfBlock = if '(' GenericExp ')' '{' Stmts '}'  ( else '{'  Stmts '} ')?
+
+
+
+
+GenericExp = 
+	'(' GenericExp ')' |
+	'!' GenericExp |
+	 name |
+	 int  |
+	 bool  |
+	 double |
+	 string |
+	 GenericExp '+' GenericExp |
+	 GenericExp '-' GenericExp |
+	 GenericExp '*' GenericExp |
+	 GenericExp '/' GenericExp |
+	 GenericExp '&&' GenericExp |
+	 GenericExp '||' GenericExp |
+	 GenericExp '>' GenericExp| 
+	 GenericExp '<' GenericExp |
+	 GenericExp '==' GenericExp |
+	 GenericExp '>=' GenericExp |
+	 GenericExp '<=' GenericExp |
+	 GenericExp '\=' GenericExp |
+	 GenericExp '%' GenericExp |
+	 name '[' GenericExp  ( ',' GenericExp )* ']' 

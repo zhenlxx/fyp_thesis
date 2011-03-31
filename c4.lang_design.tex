@@ -150,6 +150,38 @@ As \textbf{yun} is an imperative language,the right side of the assignment opera
 \end{figure}
 
 \subsection{Generic Expression}
+Generic expression represent the computation between primitives.As mention above, \textbf{yun} is  a weak typing and dynamic typing language,the generic expression accepts variant types of primitive and will do the conversion internally.
+
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.65\textwidth]{pic/c4/generic_exp.png}
+	\caption{Expression Syntax Diagram}
+\end{figure}
+
+
+Valid expression could be ,
+\begin{lstlisting}[language=java]
+"string"
+1
+-10 
+1.1
+True
+False
+True 
+False // primitives 
+
+1 + "a string"
+1 * 2 + 1  
+a[2] //get the third element of a list
+a[1,2]  // get the element in a multi dimension list
+
+(a+b)+c // operation between variables
+a[num] 
+\end{lstlisting}
+
+
+\subsubsection*{List}
 
 
 
