@@ -47,9 +47,27 @@ In my project,I have implemented a weak typing system .I have design an statemen
 
 
 \section{Problem and resolution in writing BNF/EBNF rules}
+
+
+For a parser , there are four operation it will do when encounters a terminal/non-terminal symbol.They are,
+\begin{itemize}
+\item Shift - push token onto stack
+\item Reduce - remove handle from stack and push on corresponding nonterminal
+\item Accept - recognize sentence when stack contains only the distinguished symbol and input is empty
+\item Error - happens when none of the above is possible; means original input was not a sentence
+\end{itemize}
+
+Conflicts arise from ambiguities in the grammar when two or more operations and rules that apply to the same sequence of input.[A final solution to the Dangling else of ALGOL 60 and related languages]
 \subsection{Shift//Reduce Problem}
+A shift conflict occurs if there are two or more rules that
+apply to the same sequence of input for the same operation reduce.  This usually indicates a serious
+error in the grammar.
 
 \subsection{Reduce//Reduce Problem}
+A reduce/reduce conflict occurs if there are two or more rules that
+apply to the same sequence of input for the same operation reduce.  This usually indicates a serious
+error in the grammar.
+
 
 \section{Syntax Design}
 
@@ -256,7 +274,9 @@ while (a<10){
 
 
 for (i =0;i<10;i=i+1){
-	sum = sum+ i;
-}
+	for (j=0;j<10;j=j+1){
+		sum=j+i;
+	}
+}//nested for block
 
 \end{lstlisting}

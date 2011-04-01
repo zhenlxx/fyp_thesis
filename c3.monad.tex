@@ -105,6 +105,9 @@ The State Monad is defined as follow
 \begin{hcode}
 newtype State s a = State {runState :: s -> (a, s)}
 \end{hcode}
+
+
+
 \subsection{List Monad}
 Haskell try to use list monad to represent a calculation that return multiple result.
 

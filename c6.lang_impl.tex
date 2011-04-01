@@ -1,1 +1,59 @@
 \chapter{Language Implementation}
+
+
+\section{Data Type}
+\subsection{Tokenizer Type}
+All tokens are define using the Haskell Lexer Generator Alex.Tokens will be recognized and converted to Haskell data types.For example , a valid variable is comprised with one or more alphabetic characters and digit and the first character must be an alphabetic characters. This rule can be defined as ,
+\begin{lstlisting}[language=java]
+$digit = 0-9			-- digits
+$lowerCase = [a-z]
+$alpha = [a-zA-Z]		-- alphabetic characters
+
+tokens :-
+  $alpha [$alpha $digit \_ \' \.]* { \s -> TName s }
+-- data definition
+data Token = 
+	TName String |
+	TBool Bool  | 
+	TInt Int  | 
+	...  -- more definition			
+
+\end{lstlisting}
+
+The variable \textbf{var1} will be parse into Haskell data type \textbf{TName "var1"}\\
+
+
+By using the lexer , all the code will be generated into tokens streams.
+\begin{lstlisting}[language=java]
+program myProgram ()
+{
+	var1 = 1;
+	result = var1 + "a string";
+}
+\end{lstlisting}
+
+The following codes show the invocation of the lexer and the returned tokens stream.
+\begin{lstlisting}[language=java]
+lexer "program myProgram() { var1 = 1; result = var1 + False; return 0; }"
+[TProgram,TName "myProgram",TOPB,TCPB,TOCB,TName "var1",TAssign,TInt 1,TSC,TName "result",TAssign,TName "var1",TPlus,TBool False,TSC,TReturn,TInt 0,TSC,TCCB]
+\end{lstlisting}
+
+
+
+\subsection{Parser internal data type}
+The Parser internal data type represents a parse tree.
+
+
+\subsection{Interpreter internal data type}
+
+
+
+\section{Symbol Table and Parse Tree}
+
+
+\section{Generic Expression Interpreter}
+
+
+\section{Statement Interpreter}
+
+\subsection{Function Invocation}
