@@ -1,4 +1,33 @@
 \chapter{Language Interpreter Design}
+\section{Architecture}
+the interpreter contains two part,the parser and the execution engine. the
+parser will parse the source code into a parser tree,the execution engine will
+then execute the code according to the parser tree.
+
+\subsection{Parser}
+the parser that the source code as input and generate a tree structure as
+output.
+
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.80\textwidth]{pic/c4/parser.png}
+	\caption{The Parser}
+\end{figure}
+the parser will contains different type of automata so that it could recognize different types of grammar.the grammar using to design the language
+is content-free grammar.
+the parser was build by combine simple and atomic parsers.The parser
+can be view as a function that a parser is a function that takes a string of
+characters as its argument, and returns a list of results. [?]
+
+\subsection{The Execution Engine}
+The execution engine of the parser is basic on Haskell.the execution engine
+will accept a parse tree and execute the command basic on this parse tree.
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.40\textwidth]{pic/c4/structure.png}
+	\caption{The Parser}
+\end{figure}
+
 
 
 \section{Imperative and Declarative language}
