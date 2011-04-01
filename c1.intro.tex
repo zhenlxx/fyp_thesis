@@ -22,3 +22,43 @@ Higher-Order Polymorphism
 ]
 \section{Development Methodology}
 Agile development methodology is used in the entire development process.This project has been initially identified to multiple iterations and each iteration contains three major phrases inducing research ,development and testing.
+\\
+\\
+Researches have been done on investing some useful Haskell library like Parsec ,Happy,Alex and HUnit.
+\\
+\\
+Eclipse with EclipseFP plugin provide support for source code and package management in Eclipse.To keep tract of the development process,I make use of \textbf{git} a source control tool to version all the source file.
+
+
+
+\section{Code Formats}
+In this thesis,two types of code will be listed in different formats.
+
+Code listed without line numbers illustrates the design of the interpreter or other Haskell concept.Most of it are Haskell code,which looks like,
+\begin{hcode}
+ return a >>= k  ==  k a
+ m >>= return  ==  m
+ m >>= (\x -> k x >>= h)  ==  (m >>= k) >>= h
+\end{hcode}
+
+
+Code listed with line numbers are example of \textbf{yun} ,the programming language designed in this project.It looks like,
+
+\begin{lstlisting}[language=SQL]
+program main (){
+	result = fib (10);
+	sys.printLn(result);	
+} 
+function fib (num) {
+	if (num ==0){
+		return 1;
+	}
+	if(num == 1){
+		return 1;
+	}
+	
+	part1 = fib(num-1);
+	part2 = fib(num-2);
+	return (part1+part2) ;
+}
+\end{lstlisting}

@@ -1,4 +1,17 @@
 \chapter{Monads}
+\section{Overview}
+\subsection{Side effect}
+
+
+\subsection{Monad}
+
+
+
+
+
+
+
+
 \section{Haskell and Category Theory}
 Category theory is a general theory that examine and organize mathematical object like set ,function,function domains Cartesian-set.
 
@@ -115,5 +128,19 @@ Haskell try to use list monad to represent a calculation that return multiple re
 \section{Using Monad Operator to Combine Monadic Function}
 
 \section{Type system in Haskell}
-\section{Do Notation - Reinventing a imperatilanguageve language}
+\section{Do Notation }
+The do notation is a syntax sugar to write monadic operation especially bind in a imperative way ,to be more specified,only monadic function with the same return type can write together.An IO action that return \textbf{IO ()} can not put with and state monadic function that return \textbf{State s a}.
+
+To write a get line and put line logic using bind, the sequence of IO is guaranteed by monad laws.
+\begin{hcode}
+ getLine >>= (\x -> putStrLn x)
+\end{hcode}
+
+
+Following code shows that the same functionalities are written using do-notation,which shows a strong similarity to a imperative language.
+\begin{hcode}
+do line <- getLine 
+   putStrLn line
+\end{hcode}
+
 
