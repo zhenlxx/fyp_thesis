@@ -105,13 +105,68 @@ ListList  [ListGenericExp (Int 1),ListGenericExp (Int 2),
 \end{figure}
 
 
-\subsection{Interpreter internal data type}
+\subsection{Interpreter Internal Data Type}
+The data type defined as below shows that the possible data type of result that a sub-interpreter will return.There is a interpreter correspond it.The sub-interpreter will return for example an interger to represent the result of a generic expression.The recursive data type is use for a the purpose of nested list support. 
+\begin{hcode}
+data Value =  Int Int 
+             | Bool Bool
+             | Double Double
+             | String String 
+             | List [Value]
+             | NULL    deriving Show
+\end{hcode}
 
-\section{Statement Interpreter}
+
+\subsubsection{The Interpreter Monad}
+The interpreter monad is a combination of Error Monad ,State Monad and IO monad.
+
+\begin{hcode}
+type Interp a  = (ErrorT String (StateT Storage IO )) a
+
+type SymbolTable = M.Map String Value
+type Storage = (SymbolTable,[Func])
+\end{hcode}
+
+
+For each sub-interpreter ,it must accept an expression and return a \textbf{Interp} type.The \textbf{Interp} type is a monad constructor that offer encapsulation support to return value.One of the \textbf{StateT} parameter is the type \textbf{Storage} which represents the internal storage of an interpreter like symbol table and parse tree of sub-function.
+
+
+
+\section{Module Evaluator}
+Module is the minimum executable unit in \textbf{yun} programming language.A module is comprised by one main function and multiple sub functions.What the Module Evaluator will do is ,first initial the symbol table using a empty map, second, extract the parse tree data and put in two together with the symbol table,third,extract all statements in main function and hand it over to statement evaluator.This Evaluator will not check the error message from other sub-evaluator it invoked,all the error will be passed to the main function.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.90\textwidth]{pic/c6/module.png}
+	\caption{Diagram illustrating a parse tree of a module}
+\end{figure}
+\section{Statement Evaluator}
+
+
+\begin{hcode}
+data Control = Break | Continue | DoNothing | Return Value deriving (Show)
+
+stmtsEval :: [Stmt] -> Interp Control
+stmtsEval --   function body
+
+stmtEval :: Stmt -> Interp Control
+stmtEval  -- the function body
+\end{hcode}
+\textbf{Stmt} is a data type that represents a Parse Tree of a statement.The first statement evaluator will accept a list of statement and for each statement,it invoke the statement evaluator.By applying patter matching,the statement will do correspond action toward each type of the statement.For example, for the \textbf{break} or \textbf{continue} statements,it will return the corresponding control command.The diagram below illustrate the how the statement evaluator works.
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.80\textwidth]{pic/c6/statement.png}
+	\caption{Diagram illustrating guard condition and function invocation}
+\end{figure}
+
+
+
 
 \section{Symbol Table and Parse Tree}
+The symbol table together with the parse trees of sub-functions as a tuple will be stored behind the state monad.Symbol table is a map that mapping from a string to the type \textbf{Value} mentioned above.
 
 
 \section{Generic Expression Interpreter}
 
 \subsection{Function Invocation}
+\section{Main Function}
