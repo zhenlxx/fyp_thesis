@@ -94,23 +94,29 @@ Compared toe parser generator , monadic parsing has two major benifits
 
 
 
-
-
 \section {Lexical analysis}
-Before parsing,the lexical analsier will scan the source code and generate a sequence of token.
+Before parsing,the lexical analyser will scan the source code and generate a sequence of tokens.The tokens are often defined by regular expressions.
+
+For example,the statement \textbf{s3 = s1 + "a string"} will be parse to tokens,
+
+\begin{tabular}{|c|c|}
+\hline s3 & identifier ,variable name \\ 
+\hline = & operator \\ 
+\hline s1 & identifier,variable name \\ 
+\hline + & opeartor \\ 
+\hline "a string" & a string constant \\ 
+\hline 
+\end{tabular} 
 
 
-\subsection{Regular Expression and token}
-Tokens are defined by using regular expression,
+The regular expression $ [a-zA-Z]{1}[a-zA-Z\setminus\_0-9]*  $ can identify strings that begin will alphabetical character.
+
 
 \subsection{The Lexer Generator Alex}
-In this project, the Alex Haskell Lexer generator is apply in generating token streams.
-
-each token can be defined using regular expression.
-
-
-
-
+Alex is a tool for generating lexical analysers in Haskell, given a description of the tokens to be recognised in the form of regular expressions. It is similar to the tools lex and flex for C/C++.
+\\\\
+Alex takes a description of tokens based on regular expressions and generates a Haskell module containing code for scanning text efficiently. Alex is designed to be familiar to exisiting lex users, although it does depart from lex in a number of ways.
+[Alex User Guide  ]
 
 
 

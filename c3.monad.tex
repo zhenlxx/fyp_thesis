@@ -28,6 +28,26 @@ For any arrow $ f: A \rightarrow B,$
 $$ id_{a} \circ f = f  \;and\;  f\circ id_{a} = f. $$
 \end{enumerate}\cite{pierce_basic_1991}
 
+
+\subsubsection*{Category in Haskell}
+In Haskell,all the type in can be view as objects and all the function can be view as arrows.id function has been defined as follow.
+\begin{hcode}
+ id :: a -> a
+\end{hcode}
+It can be viewed as an identify arrow of all objects(types).
+\subsubsection*{Functor in Haskell}
+Some high order function like fmap can be view as a functor.
+\begin{hcode}
+fmap :: (a -> b) -> (f a -> f b)
+\end{hcode}
+From its signature we know that fmap maps arrows in category to another category.f a is the type constructor that takes a as its parameter an generate f a as a new type.So it maps the arrow from a $->$ b to f a $->$ f b.
+
+Its instances types like Maybe and ReadP satisfy the functor law:
+\begin{hcode}
+fmap id  ==  id
+fmap (f . g)  ==  fmap f . fmap g
+\end{hcode}
+
 Functions are the first member of the program in functional programming,since no size affect is not allow ,there should be a way to combine the all kinds of functions to from a new function instead of just simply chain the input output of each function as the former will generate intermediate output.
 
 
