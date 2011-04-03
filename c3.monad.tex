@@ -18,11 +18,8 @@ evaluation, while impure languages offer efficiency benefits and sometimes make 
 \subsection{Side effect}
 In imperative language like C/C++ , it is often the case that it access the variable outside the function,eg. the error flag.In Java, the keyword \textbf{synchronized} is used to acquire look to the share resource,most of time,they are the resource from out side word.\\
 
-Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do "stateful" and IO computations.[Imperative Functional Programming]
+Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do "stateful" and IO computations.[Imperative Functional Programming]\\
 
-
-
-\subsection{Monad}
 Another approach to introducing effects in a purely functional language
 is to make the use of effects explicit in the type system. Several methods
 have been proposed, but the most elegant and widely used is the concept
