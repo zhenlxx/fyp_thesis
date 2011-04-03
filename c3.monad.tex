@@ -128,24 +128,95 @@ In monad instance ,these monad laws will become a restriction of the operation w
 
 
 \subsection{IO Monad}
-Haskell use IO monad to limit the IO sequence.Monadic operation are used to represent IO processing pipeline,
-One significant different between IO monad an other monad is that it does not provide escape function like  
+Haskell use IO monad to limit the IO sequence.Monadic operation are used to represent IO processing pipeline.\\
+
+Haskell I/O has always been a source of confusion and surprises for new Haskellers.
+
+Normally, the first thing to lean a new language to to print something on the screen,but it is not the case in Haskell.The first thing I do in Haskell is to write a quick sort algorithm which is a classic program to show the powerful Haskell list comprehension feature that brings the most elegant solution of quick sort compared to most of other language.On the other hand,its not that straight forward to build an IO system upon it inside language that emphasized purity.
+
+
+
+It probably not the best monad for beginner to learn as it dost not provide escape function.The IO moand is implemented as part of language in \textbf{Base.GHC},thus the logic of monad operator is not exposed to outside world.
+
 \begin{hcode}
-IO String ->String
+unsafePerformIO :: IO a -> a
 \end{hcode}
+
+The above shows the code of an escape function which will break the purity of Haskell IO system.This is the "back door" into the IO monad, allowing IO computation to be performed at any time. For this to be safe, the IO computation should be free of side effects and independent of its environment.[ haskell io document]
+
+
+As we can guess from the nature of Haskell,IO monad is introduced to guarantee to following factor,
+
+\begin{itemize}
+\item The sequence of IO actions perform in a lazy Haskell context.
+\item perform IO as an function rather than a function or and command in functional programming context.
+\item combine IO,distinguish computation that with IO actions with the one without.
+\item  file buffering , open and close file in a correct manner.
+\end{itemize}
+
+
+The code below shows combination of monad using bind operator.
+\begin{hcode}
+ioAction 
+  =putStrLn "What is your name ?"
+	 >>= (_-> getLine >>= 
+		(\x -> putStrLn ("welcome" ++ x) ))
+\end{hcode}
+
+
 
 \subsection{State Monad}
-The State Monad is defined as follow 
+The basic idea of a state monad is to allow us to represent functions which interact with local state variables (which are just called local variables in most languages), or global state variables (usually called global variables). Essentially, they allow us to simulate some aspects of imperative programming in a purely functional setting.\\
+
+An alternate solution is that we can pass the initial state into each function and return the state together with the result,with may looks like,
 \begin{hcode}
-newtype State s a = State {runState :: s -> (a, s)}
+add :: State -> Input -> (State ,Output)
+-- implement
+
+subtract :: State -> Input -> (State,Output)
 \end{hcode}
 
 
+To make it possible to composite computation with state we could rewrite all computation with follow.
+
+\begin{hcode}
+add :: (Input,State) -> (Output,State)
+-- implementation 
+subtract :: (Input,State) -> (Output,State)
+combine = add.subtract 
+\end{hcode}
+
+However,its tedious to write all the function with computation this way.The state monad provides a way to encapsulate the state logic into a monad without explicitly specify a State type as input and output.Like IO, the computations with state  are tagged with the type constructor \textbf{State} indicating this is a state monadic function.Most importantly, the monad law and state monad implementation guarantee the follow fact of a computation with state , they are
+
+\begin{itemize}
+\item It possible to construct a new state monadic function without initial state.
+\item when combine two state,from the nature of state transformation ,the change of state of  the second function is always after the first function.
+\item For a computation with state,we need to need the both the result of computation as well as the final state as an output of the computation.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.80\textwidth]{pic/c3/state_monad.png}
+	\caption{Combining Two "Stateful" Monadic Functions}
+\end{figure}
+
+
+\subsection{List Comprehension and List Monad}
+\subsection{List Comprehension}
+Haskell added syntax sugar to allow programmer to write code in a more readable manner.The list comprehension allow us to write a list using mathematics favour.
+
+A Fibonacci series can be written as follow,
+\begin{hcode}
+fibs :: [Int]
+fibs = 0 :1 : [ a + b | (a, b) <- zip fibs (tail fibs)]
+\end{hcode}
+
+If we view if as a mathematical expression,we can easily figure out it means $ \lbrace  0,1 ,(0+1),(1+1),(1+2),(2+3),(3+5),... \rbrace $, which will generate a Fibonacci series.In addition,it is also an example of how useful of lazy evaluation is in Haskell.
 
 \subsection{List Monad}
-Haskell try to use list monad to represent a calculation that return multiple result.
+We can view a list as monad.In list comprehension ,we have the \textbf{$<$-} operator which we can view it as $\in$,which has a mathematical $ in$  semantic.\\
 
-
+Alternatively , 
 \section{Using Monad Operator to Combine Monadic Function}
 
 \section{Type system in Haskell}
