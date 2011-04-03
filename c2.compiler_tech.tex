@@ -1,4 +1,4 @@
-\chapter{Compiler and Interpreter Technologies}
+\chapter{Technologies}
 \section{Parsing technologies}
 \subsection{Formal Grammar}
 
@@ -118,5 +118,17 @@ Alex is a tool for generating lexical analysers in Haskell, given a description 
 Alex takes a description of tokens based on regular expressions and generates a Haskell module containing code for scanning text efficiently. Alex is designed to be familiar to exisiting lex users, although it does depart from lex in a number of ways.
 [Alex User Guide  ]
 
+\section{Testing and Evaluation Technologies}
+There are two type of testing in Haskell.The type testing and unit testing.There correspond to two package in Haskell,QuickCheck and HUnit.
+\subsection*{QucikCheck}
+For pure functions programmer can write logical expression or functional specification to prove the code is correct ranter than provide a specify test case as an input of the function.
+One of the example to test a function that takes the first five element of a list is using a length function $ if \;\forall \;s.\; length(take5 \;s) = 5 \;$ is true,then the $take5$ function is probably true.
+The QuickCheck package allow us to write the assertion in Haskell code this way.
+\begin{hcode}
+quickCheck (\s -> length (take5 s) == 5)
+\end{hcode}
+
+\subsection*{HUnit}
+HUnit is a unit testing framework for Haskell to test the impure code.it is similar to the JUnit tool for Java.In unit testing,it is required to provide an input and verify the output.
 
 

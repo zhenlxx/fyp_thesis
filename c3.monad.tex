@@ -1,86 +1,34 @@
 \chapter{Monads}
 \section{Overview}
+
+
+\subsection{History}
+In May 1996, the Haskell report 1.3 is published ,in this version , monadic IO as well as do-notation made its first appearance.[A History of Haskell:Being Lazy With Class] \\
+
+In April 1997,the list comprehension is generalised into monad in the Haskell report 1.4.[A History of Haskell:Being Lazy With Class]\\ 
+
+Nowadays ,a monad has become a de-facto pattern for Haskell programmer who wants to monad and write computation with side effect,and this pattern is explicitly supported by Haskell.\\
+
+
+Pure languages are easier to reason about and may benefit from lazy
+evaluation, while impure languages offer efficiency benefits and sometimes make possible a more compact mode of expression.[Monads for functional programming]
+
+
+
 \subsection{Side effect}
-In imperative language like C/C++ , it is often the case that it access the variable outside the function,eg. the error flag.In Java, the keyword \textbf{synchronized} is used to acquire look to the share resource,most of time,they are the resource from out side word.Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do stateful and IO computations.[Imperative Functional Programming]
+In imperative language like C/C++ , it is often the case that it access the variable outside the function,eg. the error flag.In Java, the keyword \textbf{synchronized} is used to acquire look to the share resource,most of time,they are the resource from out side word.\\
+
+Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do "stateful" and IO computations.[Imperative Functional Programming]
+
+
 
 \subsection{Monad}
-sions.
 Another approach to introducing effects in a purely functional language
 is to make the use of effects explicit in the type system. Several methods
 have been proposed, but the most elegant and widely used is the concept
 of a monad.[Imperative Functional Programming]  Monads in Haskel have been used to model IO,state,logger,error as well as List.
 
 
-
-
-\section{Haskell and Category Theory}
-Category theory is a general theory that examine and organize mathematical object like set ,function,function domains Cartesian-set.
-
-A Category $C $ in category theory is defined below :
-\begin{enumerate}
-\item a collection of objects 
-\item a collection of arrows (often call morphism) 
-\item operations assigning to each arrow $f$ an object $dom\;f$,its domain ,and an object $cod\;f$,its co domain.
-\item a composition operator assigning to each pair of arrows $f and g$,with $cod\;f = dom\;g$,a composite arrow $ g \circ f:dom\;f \rightarrow  cod\;g$ , satisfying the following associative law: \\
-For any arrow $f: A \rightarrow B,g:B \rightarrow C,and\;h: C\rightarrow D$(with A,B,C and D not necessarily distinct),
-$$h\circ (g\circ f) = (h\circ g)\circ f$$
-\item for each object A, an identify arrow $id_{a}: A \rightarrow A$ satisfying the following identity law:\\
-For any arrow $ f: A \rightarrow B,$ 
-$$ id_{a} \circ f = f  \;and\;  f\circ id_{a} = f. $$
-\end{enumerate}\cite{pierce_basic_1991}
-
-
-\subsubsection*{Category in Haskell}
-In Haskell,all the type in can be view as objects and all the function can be view as arrows.id function has been defined as follow.
-\begin{hcode}
- id :: a -> a
-\end{hcode}
-It can be viewed as an identify arrow of all objects(types).
-\subsubsection*{Functor in Haskell}
-Some high order function like fmap can be view as a functor.
-\begin{hcode}
-fmap :: (a -> b) -> (f a -> f b)
-\end{hcode}
-From its signature we know that fmap maps arrows in category to another category.f a is the type constructor that takes a as its parameter an generate f a as a new type.So it maps the arrow from a $->$ b to f a $->$ f b.
-
-Its instances types like Maybe and ReadP satisfy the functor law:
-\begin{hcode}
-fmap id  ==  id
-fmap (f . g)  ==  fmap f . fmap g
-\end{hcode}
-
-Functions are the first member of the program in functional programming,since no size affect is not allow ,there should be a way to combine the all kinds of functions to from a new function instead of just simply chain the input output of each function as the former will generate intermediate output.
-
-
-For instance ,counting the file of java source code in current directory can be written as follow:
-
-
-	$$ ls-al . | grep *.txt| wc -l $$ 
-	
-	
-To substantiate the this concept , let's use the map/fold fusion technique of Haskell as an example.
-
-If we want to calculate the sum of the square of each element of a list eg. [1,3,4,6,7,9],the result of it is  $ 1^2+3^2+4^2+6^2+7^2+9^2=192 $.In Haskell ,we could use map and fold to address problem.
-
- %list_of_square = map (^2)
-%sum_of_list = foldr (+) 0
-%sum_of_square =   sum_of_list.list_of_square
-
-To avoid generating intermediate output from the first function to second function, the could rewite the hold function using a single fold
-
-The all map/fusion is is equivalent to 
-$ foldr f e . map g = foldr (\\x y -> f (g x) y) e $
-
-therefore, the 
-
-$ sum_of_square = foldr (\\x y -> x^2 + y) 0 $
-
-
-
-
-
-\section{Monadic Function}
-\subsection{Data Type Constructor}
 Type constructors play a fundamental role in Haskell's monad support.
 \subsection{Monadic Function}
 A monadic function is function that produce , however,monadic function like \textbf{putStr :: String -$>$ IO ()} can not be combined using \\ \textbf{(.) :: (b -$>$ c) -$>$ (a -$>$ b) -$>$ a -$>$ c}.Monadic class constructor has tag 
@@ -164,7 +112,6 @@ ioAction
 \end{hcode}
 
 
-
 \subsection{State Monad}
 The basic idea of a state monad is to allow us to represent functions which interact with local state variables (which are just called local variables in most languages), or global state variables (usually called global variables). Essentially, they allow us to simulate some aspects of imperative programming in a purely functional setting.\\
 
@@ -202,7 +149,7 @@ However,its tedious to write all the function with computation this way.The stat
 
 
 \subsection{List Comprehension and List Monad}
-\subsection{List Comprehension}
+\subsubsection{List Comprehension}
 Haskell added syntax sugar to allow programmer to write code in a more readable manner.The list comprehension allow us to write a list using mathematics favour.
 
 A Fibonacci series can be written as follow,
@@ -211,13 +158,32 @@ fibs :: [Int]
 fibs = 0 :1 : [ a + b | (a, b) <- zip fibs (tail fibs)]
 \end{hcode}
 
-If we view if as a mathematical expression,we can easily figure out it means $ \lbrace  0,1 ,(0+1),(1+1),(1+2),(2+3),(3+5),... \rbrace $, which will generate a Fibonacci series.In addition,it is also an example of how useful of lazy evaluation is in Haskell.
+If we view if as a mathematical expression,we can easily figure out it means $ \lbrace  0,1 ,(0+1),(1+1),(1+2),(2+3),(3+5),... \rbrace $, which will generate a Fibonacci series.In addition,it is also an example of how useful of lazy evaluation in Haskell.
 
-\subsection{List Monad}
+\subsubsection{List Monad}
 We can view a list as monad.In list comprehension ,we have the \textbf{$<$-} operator which we can view it as $\in$,which has a mathematical $ in$  semantic.\\
 
-Alternatively , 
+Alternatively , we can view list as an monad.
+\begin{hcode}
+instance  Monad []  where
+  m >>= k  = concat (map k m)
+  return x = [x]
+\end{hcode}
+
+The code above shows the definition of monad,the type construct is the list notation [],and the bind operator means that applying and monadic computation to a given list which is also a monadic data type. Equally,the list monad satisfy the three monad law ,namely ,left identity,right identity and associativity.\\
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.60\textwidth]{pic/c3/list_monad.png}
+	\caption{The First Monad Law illustration}
+\end{figure} [Haskell/Category theory]
+
+
+
 \section{Using Monad Operator to Combine Monadic Function}
+
+
+
 
 \section{Type system in Haskell}
 \section{Do Notation }
@@ -235,4 +201,4 @@ do line <- getLine
    putStrLn line
 \end{hcode}
 
-
+The \textbf{$<$-} notation in this context means unwrap the content in the monad and put it in to a variable,for example ,a monadic function returns \textbf{IO String} ,the \textbf{$<$-} notation means unwraping the content of type String from IO container.
