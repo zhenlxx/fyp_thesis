@@ -31,9 +31,24 @@ will accept a parse tree and execute the command basic on this parse tree.
 
 
 \section{Imperative and Declarative language}
+Declarative programming is a programming paradigm that expresses the logic of a computation without describing its control flow [Practical Advantages of Declarative Programming] while imperative programming paradigm is mainly about statement and manipulation of states.
+\\ \\
+In this project, the goal is to design an imperative language.Therefore,the design and interpretation of statement and assignment is the main focusing point in this project.
+In addition,sub-function definition and function invocations support are also considered in this project to provide a certain level of abstraction.The table below has listed the fundamental statements.\\
 
 
-
+\begin{tabular}{c|c}
+\hline \textbf{Code} & \textbf{Description} \\
+\hline  a = 1  &   assignment statement \\
+\hline  a = fib () &  assignment statement with function invocation \\
+\hline  while () {}&  while block statement\\
+\hline if () {} &   if block statement \\
+\hline for ( ; ; ) {} &  for block statement \\
+\hline  fib(num1) &   function invocation  \\
+\hline  break &   break loop control statement \\
+\hline continue &   continue loop control statement \\
+\hline 
+\end{tabular} 
 
 \section{Type System}
 \subsection{Dynamic Typing and Static Typing}

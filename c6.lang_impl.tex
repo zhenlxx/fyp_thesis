@@ -163,10 +163,27 @@ stmtEval  -- the function body
 
 
 \section{Symbol Table and Parse Tree}
-The symbol table together with the parse trees of sub-functions as a tuple will be stored behind the state monad.Symbol table is a map that mapping from a string to the type \textbf{Value} mentioned above.
+The symbol table together with the parse trees of sub-functions as a tuple will be stored behind the state monad.Symbol table is a map that mapping from a string to the type \textbf{Value} mentioned above.Monadic function composed to support add ,update from the symbol table.
+
+\begin{hcode}
+type SymbolTable = M.Map String Value
+type Storage = (SymbolTable,[Func])
+type Interp a  = (ErrorT String (StateT Storage IO )) a
+\end{hcode}
 
 
-\section{Generic Expression Interpreter}
+\section{Generic Expression Evaluator}
+The generic evaluator supports evaluation of internal data type like string ,integer ,double and list.As \textbf{yun} is a weak typing language ,the generic expression will do the internal type conversions. For example,a expression like \textbf{"string" + 1 } will be evaluator to  \textbf{"string1"}.All value can be converted to a string generally,but not all the value can be convert to an integer.The follow expression \textbf{1+True} will cause an error.
 
-\subsection{Function Invocation}
+Importantly,as weak typing languages have their own conversion rule,type conversion is somewhat unpredictable thus relying on type conversion is not recommended.
+
+
+\section{Function Invocation}
+Different from most of imperative language, \textbf{yun} only supports pass by value parameter passing.To invoke a function,it is  needed to save the current scene and initialize the variable table for the function.
+
+
+
 \section{Main Function}
+The main function will load the source code, the it will invoke the parser which turns source code into a parse tree.Afterwards,the module evaluator will be invoke.
+
+
