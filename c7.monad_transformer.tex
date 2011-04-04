@@ -1,4 +1,7 @@
 \chapter{Monad Transformers}
+\section{Overview}
+
+As we already have monad designed to model side-effect with restricted type,it would not be too much problem to perform an action using monad in Haskell.New monad might be needed form operation that are able to perform state manipulation as well as IO action.\\
 
 Monad transformers offer an additional benefit to monadic programming: by providing a
 library of different monads and types and functions for combining these monads, it is possible
@@ -22,26 +25,33 @@ Second,a state transformer can accept other monads to combine the computation wh
 
 
 \section{Error Transformer}
-ErrorT monad transformer can be used to add error handling to another monad. Below is an example how to combine it with an IO monad:
+ErrorT monad transformer can be used to add error handling to another monad.
+The ErrorT monad type constructor is ,
+\begin{hcode}
+newtype ErrorT e m a
+\end{hcode}
+The first parameter e is the error type like the Either Monad constructor ,m is the inner monad,a is the type of the computation.
 
 \begin{hcode}
-main = do
-  -- runErrorT removes the ErrorT wrapper
-  r <- runErrorT calculateLength
-  reportResult r
-
--- Asks user for a non-empty string and returns its length.
--- Throws an error if user enters an empty string.
-calculateLength :: LengthMonad Int
-calculateLength = do
-  -- all the IO operations have to be lifted to the IO monad in the monad stack
-  liftIO $ putStrLn "Please enter a non-empty string: "
-  s <- liftIO getLine
-  if null s
-    then throwError "The string was empty!"
-    else return $ length s
+instance (Monad m, Error e) => Monad (ErrorT e m) where
+    return a = ErrorT $ return (Right a)
+    m >>= k  = ErrorT $ do
+        a <- runErrorT m
+        case a of
+            Left  l -> return (Left l)
+            Right r -> runErrorT (k r)
 \end{hcode}
 
+From the definition above , we can derive its bind strategy which is the most important thing for us to understand a monad.For two computation \textbf{m} and {k},the bind strategy is  that it will try to extract the result from the first computation which might return a error message ,the whole computation will fail on the first computation which will attempt on the succeed of the first.computation.
+
+The escape function \textbf{runErrorT} can help us to extract the inner level monad which is a computation with some kinds of monad logic and execute it.
+
+\section{Combining Monads}
+Monad transformers create a new monad by extending an existing monad with additional operations, thereby allowing new programming language features to be de defined while preserving any language definition given for the original monad.[Modular Compilers Based on Monad Transformers]\\ 
+
+As monad guarantees the correctness of the computation with the type restriction,namely we can not combine two computations one with "stateful" while other with IO logic into one building block,we might need addition functions like lift and liftIO together with monad transformer to fix the type problem .\\
 
 
-\section{Putting All Together}
+As we can imagine that, if could combine every monad for most of monad if offer a monad transformer form.In this way,the action combine inside to notation would probably be no different from a real imperative language.When we combine all monads, the type restricted become slacked accepting a type of computation with side effect which is no difference from a real imperative language.\\
+
+The only difference might be the sequence we encapsulate monad and monad transformers,that is we can only warp IO inside other monad transformers.

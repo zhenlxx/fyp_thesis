@@ -26,13 +26,8 @@ have been proposed, but the most elegant and widely used is the concept
 of a monad.[Imperative Functional Programming]  Monads in Haskel have been used to model IO,state,logger,error as well as List.
 
 
-Type constructors play a fundamental role in Haskell's monad support.
-\subsection{Monadic Function}
-A monadic function is function that produce , however,monadic function like \textbf{putStr :: String -$>$ IO ()} can not be combined using \\ \textbf{(.) :: (b -$>$ c) -$>$ (a -$>$ b) -$>$ a -$>$ c}.Monadic class constructor has tag 
 
-
-
-\section{Monads}
+\section{Introduction to Monad}
 In Haskell,monad is used an abstract data type constructor to represent multiple kinds of computation such as a computation that will do IO action,or a computation that has state.Those computations are in-pure because that manipulate the outside world.In Haskell.Mathematically, monads are governed by set of laws that should hold for the monadic operations [A Gentle Introduction to Haskell, Version 98]. There are two basic law in monads ,they are bind return .The Monad class is defined as follow:
 \begin{hcode}
 class Monad m where
@@ -60,9 +55,8 @@ liftM f m1              = do { x1 <- m1; return (f x1) }
 \end{hcode}
 Therefore,when defining a monad,only bind and return need to be specified.
 
-\subsubsection{Monadic Characteristic}
+\subsubsection{Monad Laws}
 For all monad instance ,beside define three monadic operator ,they must apply three compulsory monad laws:
-
 \begin{hcode}
 "Left identity": return a >>= f  ≡  f a
 "Right identity": m >>= return  ≡  m
@@ -72,7 +66,12 @@ For all monad instance ,beside define three monadic operator ,they must apply th
 In monad instance ,these monad laws will become a restriction of the operation when combining monadic function using monadic operation,these restriction will be discussed in following sections.
 
 
-\subsection{IO Monad}
+\subsubsection{Monadic Function}
+A monadic function is function that produce , however,monadic function like \textbf{putStr :: String -$>$ IO ()} can not be combined using \\ \textbf{(.) :: (b -$>$ c) -$>$ (a -$>$ b) -$>$ a -$>$ c}.Monadic class constructor has tag 
+
+
+
+\section{IO Monad}
 Haskell use IO monad to limit the IO sequence.Monadic operation are used to represent IO processing pipeline.\\
 
 Haskell I/O has always been a source of confusion and surprises for new Haskellers.
@@ -109,7 +108,7 @@ ioAction
 \end{hcode}
 
 
-\subsection{State Monad}
+\section{State Monad}
 The basic idea of a state monad is to allow us to represent functions which interact with local state variables (which are just called local variables in most languages), or global state variables (usually called global variables). Essentially, they allow us to simulate some aspects of imperative programming in a purely functional setting.\\
 
 An alternate solution is that we can pass the initial state into each function and return the state together with the result,with may looks like,
@@ -145,8 +144,8 @@ However,its tedious to write all the function with computation this way.The stat
 \end{figure}
 
 
-\subsection{List Comprehension and List Monad}
-\subsubsection{List Comprehension}
+\section{List Comprehension and List Monad}
+\subsection{List Comprehension}
 Haskell added syntax sugar to allow programmer to write code in a more readable manner.The list comprehension allow us to write a list using mathematics favour.
 
 A Fibonacci series can be written as follow,
@@ -157,7 +156,7 @@ fibs = 0 :1 : [ a + b | (a, b) <- zip fibs (tail fibs)]
 
 If we view if as a mathematical expression,we can easily figure out it means $ \lbrace  0,1 ,(0+1),(1+1),(1+2),(2+3),(3+5),... \rbrace $, which will generate a Fibonacci series.In addition,it is also an example of how useful of lazy evaluation in Haskell.
 
-\subsubsection{List Monad}
+\subsection{List Monad}
 We can view a list as monad.In list comprehension ,we have the \textbf{$<$-} operator which we can view it as $\in$,which has a mathematical $ in$  semantic.\\
 
 Alternatively , we can view list as an monad.
@@ -177,12 +176,6 @@ The code above shows the definition of monad,the type construct is the list nota
 
 
 
-\section{Using Monad Operator to Combine Monadic Function}
-
-
-
-
-\section{Type system in Haskell}
 \section{Do Notation }
 The do notation is a syntax sugar to write monadic operation especially bind in a imperative way ,to be more specified,only monadic function with the same return type can write together.An IO action that return \textbf{IO ()} can not put with and state monadic function that return \textbf{State s a}.
 
@@ -199,3 +192,34 @@ do line <- getLine
 \end{hcode}
 
 The \textbf{$<$-} notation in this context means unwrap the content in the monad and put it in to a variable,for example ,a monadic function returns \textbf{IO String} ,the \textbf{$<$-} notation means unwraping the content of type String from IO container.
+
+
+
+\section{Error Monad}
+The error monad can models a computation which may fail or throw exception.The construct or a error monad is \textbf{Either a b} where a represent the type of error message and b represents the normal return value.
+
+A left value will be returned if a computation or a combination of a computation fail whereas a right will value will be returned if succeed.The code below shows the bind strategy.
+
+\begin{hcode}
+instance Monad (Either a) where
+    return = Right
+    x >>= f = case x of
+        Left _ -> x
+        Right r -> f r
+\end{hcode}
+
+From the above implementation ,we knows that for a computation x and f ,if the previous computation ,namely x has error,the second computation f will be abandoned,thus and error of x will be return.The first computation will be attempted only when the first computation succeed,the result of the first computation will be extracted from the right value and applied from the second computation.
+Finally ,we can know that, for a composition of computation which may fail,the earliest failure message will be recorded.
+
+
+\section{Other Monads}
+Other monads includes Maybe Monad ,Reader Monad,Writer Monads , are designed to model a certain type of computation.
+
+The Maybe monad is similar to the Error,though its just a simplified version that can not return any useful error message.\\
+
+Reader Monad are designed to model computation that read values from a shared environment.In fact,for computations that read values from outside word,it is possible that we pass the environment variable as the parameter to functions.But it would be simplified if we use the reader monad.
+The bind monad operation,which we can guess that will allow to computation to access that shared environment.\\
+
+Equally,the Writer Monad are designed module computation that write to a shared configuration.As we can guess,the bind operator all both computation to write into the environment.
+
+

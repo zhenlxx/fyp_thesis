@@ -58,16 +58,16 @@ Content-free grammar can represent the Algebraic expressions.The table below spe
 
 \begin{tabular}{|p{6cm}|p{6cm}|}
 \hline \textbf{Rules} & \textbf{Description}\\ 
-\hline  $S \rightarrow number $ & S produce a number, may be a integer or a float ,defined by regular expression  \\ 
-\hline  $ S \rightarrow boolean $ &  produce a boolean value \\ 
-\hline  $ S \rightarrow string $&  produce a string value \\ 
-\hline  $ S \rightarrow S+S $&  adding of two S expression\\ 
-\hline  $ S \rightarrow S-S $ &  substrate of two S expression\\
-\hline $  S\rightarrow S \%S $ & mod of two S expression \\
-\hline $  S\rightarrow S || S $ &  logical or of two S expression\\
-\hline $ S \rightarrow S \&\& S $ & logical and of two S expression \\
-\hline $ S \rightarrow ( S) $ &  bracket of the S expression\\
-\hline $ S \rightarrow S == S $ & logical and of two S expression \\
+\hline  $1. S \rightarrow number $ & S produce a number, may be a integer or a float ,defined by regular expression  \\ 
+\hline  $2.  S \rightarrow boolean $ &  produce a boolean value \\ 
+\hline  $3. S \rightarrow string $&  produce a string value \\ 
+\hline  $4.S \rightarrow S+S $&  adding of two S expression\\ 
+\hline  $5.S \rightarrow S-S $ &  substrate of two S expression\\
+\hline $6.S\rightarrow S \%S $ & mod of two S expression \\
+\hline $7. S\rightarrow S > S $ &  logical greater  of two S expression\\
+\hline $8.S \rightarrow S \&\& S $ & logical and of two S expression \\
+\hline $9.S \rightarrow ( S) $ &  bracket of the S expression\\
+\hline $10.S \rightarrow S == S $ & logical and of two S expression \\
 \hline 
 \end{tabular} 
 
@@ -75,34 +75,24 @@ This grammar can, for example, generate the string
 $$  ((a+2) == (a*2) )\&\& (a > 0)  $$
 
 can be derived be the projection rule as follow,
-
- $$ S \,the start symbol $$   
- $$ S \&\& S$$
-$$ (S) \&\&S $$
-$$ (S==S) \&\&S $$
-$$ ((S)==S)\&\&S $$
-$$ ((S+S))==S)\&\&S $$
-$$ ((a+2))==S)\&\&S $$
-$$  ((a+2))==(S*S))\&\&S $$
-$$  ((a+2))==(a*2))\&\&S $$
-$$  ((a+2))==(a*2))\&\&(S) $$
-$$ ((a+2))==(a*2))\&\&(S>S) $$
-$$  ((a+2))==(a*2))\&\&(a>0) $$
  
 \begin{tabular}{|l|l|}
 \hline S & the start symbol\\ 
-\hline S \&\& S & rule  \\ 
-\hline  (S) \&\&S & rule \\ 
-\hline   (S==S) \&\&S & rule \\ 
-\hline  ((S)==S)\&\&S  & rule  \\ 
-\hline ((S+S))==S)\&\&S & rule \\
-\hline ((a+2))==S)\&\&S & rule \\
-\hline  ((a+2))==(S*S))\&\&S & rule \\
-\hline  ((a+2))==(a*2))\&\&S & rule \\
-\hline ((a+2))==(a*2))\&\&(S)  & rule \\
-\hline ((a+2))==(a*2))\&\&(S>S) & rule \\
-\hline ((a+2))==(a*2))\&\&(a>0) & rule \\
-\hline 
+\hline S \&\& S & rule 8 \\ 
+\hline  (S) \&\&S & rule 9\\ 
+\hline   (S==S) \&\& S & rule 10 \\ 
+\hline  ((S)==S)\&\& S  & rule  9\\ 
+\hline ((S+S))==S)\&\& S & rule 4\\
+\hline ((S+S))==S)\&\& (S) & rule 9 \\
+\hline  ((S+S))==(S*S))\&\& (S$>$S) & rule 7\\
+\hline ((a+S))==(S*S))\&\&(S$>$S)  & rule 3\\
+\hline ((a+2))==(S*S))\&\&(S$>$S) & rule 1\\
+\hline ((a+2))==(a*S))\&\&(S$>$S) & rule 3\\
+\hline ((a+2))==(a*2))\&\&(S$>$S) & rule 1\\
+\hline ((a+2))==(a*2))\&\&(a$>$S) & rule 3\\
+\hline ((a+2))==(a*2))\&\&(a$>$0) & rule 1\\
+\hline
+
 \end{tabular} 
  
  
