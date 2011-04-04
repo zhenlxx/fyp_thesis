@@ -3,32 +3,32 @@
 
 
 \subsection{History}
-In May 1996, the Haskell report 1.3 is published ,in this version , monadic IO as well as do-notation made its first appearance.[A History of Haskell:Being Lazy With Class] \\
+In May 1996, the Haskell report 1.3 is published ,in this version , monadic IO as well as do-notation made its first appearance.\cite{history} \\
 
-In April 1997,the list comprehension is generalised into monad in the Haskell report 1.4.[A History of Haskell:Being Lazy With Class]\\ 
+In April 1997,the list comprehension is generalised into monad in the Haskell report 1.4.\cite{history} \\ 
 
 Nowadays ,a monad has become a de-facto pattern for Haskell programmer who wants to monad and write computation with side effect,and this pattern is explicitly supported by Haskell.\\
 
 
 Pure languages are easier to reason about and may benefit from lazy
-evaluation, while impure languages offer efficiency benefits and sometimes make possible a more compact mode of expression.[Monads for functional programming]
+evaluation, while impure languages offer efficiency benefits and sometimes make possible a more compact mode of expression.\cite{monads_for}
 
 
 
 \subsection{Side effect}
 In imperative language like C/C++ , it is often the case that it access the variable outside the function,eg. the error flag.In Java, the keyword \textbf{synchronized} is used to acquire look to the share resource,most of time,they are the resource from out side word.\\
 
-Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do "stateful" and IO computations.[Imperative Functional Programming]\\
+Imperative language are unrestricted to side effect,which makes it hard to write function that allows parallelism .On the other hand,Haskell restricts side effects with a static type system; it uses the concept of monads to do "stateful" and IO computations.\cite{imperative} \\
 
 Another approach to introducing effects in a purely functional language
 is to make the use of effects explicit in the type system. Several methods
 have been proposed, but the most elegant and widely used is the concept
-of a monad.[Imperative Functional Programming]  Monads in Haskel have been used to model IO,state,logger,error as well as List.
+of a monad.\cite{imperative}  Monads in Haskell have been used to model IO,state,logger,error as well as List.
 
 
 
 \section{Introduction to Monad}
-In Haskell,monad is used an abstract data type constructor to represent multiple kinds of computation such as a computation that will do IO action,or a computation that has state.Those computations are in-pure because that manipulate the outside world.In Haskell.Mathematically, monads are governed by set of laws that should hold for the monadic operations [A Gentle Introduction to Haskell, Version 98]. There are two basic law in monads ,they are bind return .The Monad class is defined as follow:
+In Haskell,monad is used an abstract data type constructor to represent multiple kinds of computation such as a computation that will do IO action,or a computation that has state.Those computations are in-pure because that manipulate the outside world.In Haskell.Mathematically, monads are governed by set of laws that should hold for the monadic operations.\cite{intro} There are two basic law in monads ,they are bind return .The Monad class is defined as follow:
 \begin{hcode}
 class Monad m where
   (>>=) :: m a -> (a -> m b) -> m b
@@ -86,7 +86,7 @@ It probably not the best monad for beginner to learn as it dost not provide esca
 unsafePerformIO :: IO a -> a
 \end{hcode}
 
-The above shows the code of an escape function which will break the purity of Haskell IO system.This is the "back door" into the IO monad, allowing IO computation to be performed at any time. For this to be safe, the IO computation should be free of side effects and independent of its environment.[ haskell io document]
+The above shows the code of an escape function which will break the purity of Haskell IO system.This is the "back door" into the IO monad, allowing IO computation to be performed at any time. For this to be safe, the IO computation should be free of side effects and independent of its environment.%% [haskell IO]
 
 
 As we can guess from the nature of Haskell,IO monad is introduced to guarantee to following factor,
@@ -172,7 +172,7 @@ The code above shows the definition of monad,the type construct is the list nota
   \centering
 	\includegraphics[width=0.60\textwidth]{pic/c3/list_monad.png}
 	\caption{The First Monad Law illustration}
-\end{figure} [Haskell/Category theory]
+\end{figure} %% [Haskell/Category theory]
 
 
 

@@ -17,7 +17,7 @@ the parser will contains different type of automata so that it could recognize d
 is content-free grammar.
 the parser was build by combine simple and atomic parsers.The parser
 can be view as a function that a parser is a function that takes a string of
-characters as its argument, and returns a list of results. [?]
+characters as its argument, and returns a list of results.\cite{book}
 
 \subsection{The Execution Engine}
 The execution engine of the parser is basic on Haskell.the execution engine
@@ -31,7 +31,7 @@ will accept a parse tree and execute the command basic on this parse tree.
 
 
 \section{Imperative and Declarative language}
-Declarative programming is a programming paradigm that expresses the logic of a computation without describing its control flow [Practical Advantages of Declarative Programming] while imperative programming paradigm is mainly about statement and manipulation of states.
+Declarative programming is a programming paradigm that expresses the logic of a computation without describing its control flow \cite{practical} while imperative programming paradigm is mainly about statement and manipulation of states.
 \\ \\
 In this project, the goal is to design an imperative language.Therefore,the design and interpretation of statement and assignment is the main focusing point in this project.
 In addition,sub-function definition and function invocations support are also considered in this project to provide a certain level of abstraction.The table below has listed the fundamental statements.\\
@@ -101,7 +101,7 @@ For a parser , there are four operation it will do when encounters a terminal/no
 \item Error - happens when none of the above is possible; means original input was not a sentence
 \end{itemize}
 
-Conflicts arise from ambiguities in the grammar when two or more operations and rules that apply to the same sequence of input.[A final solution to the Dangling else of ALGOL 60 and related languages]
+Conflicts arise from ambiguities in the grammar when two or more operations and rules that apply to the same sequence of input.\cite{final}
 \subsection{Shift//Reduce Problem}
 A shift conflict occurs if there are two or more rules that
 apply to the same sequence of input for the same operation reduce.  This usually indicates a serious

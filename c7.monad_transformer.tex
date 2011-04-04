@@ -5,7 +5,7 @@ As we already have monad designed to model side-effect with restricted type,it w
 
 Monad transformers offer an additional benefit to monadic programming: by providing a
 library of different monads and types and functions for combining these monads, it is possible
-to create custom monads simply by composing the necessary monad transformers. [Monad Transformers Step by Step]\\
+to create custom monads simply by composing the necessary monad transformers. \cite{step} \\
 
 In real world application, it is often the case that a combination different type of action is required to put into one function.Monad transformer provide a new way to glue them together.
 
@@ -15,8 +15,7 @@ A value of type \textbf{(ST a s)} is a computation which transforms a state inde
   \centering
 	\includegraphics[width=0.60\textwidth]{pic/c3/state.png}
 	\caption{Diagram illustrating a state monad}
-\end{figure}
-[lazy functional state thread]
+\end{figure}\cite{lazy1}
 \\
 
 First , a state transformer is a monad, other than encapsulating a data behind signature , it encapsulated a computation,the \textbf{runState} function provide by the state monad is an escape function that allow us to extract is state logic from the computation,by feeding the state computation function with an initial state,we are able to get the final state.Other type of escape function is provided to extract computation as well.
@@ -46,8 +45,26 @@ From the definition above , we can derive its bind strategy which is the most im
 
 The escape function \textbf{runErrorT} can help us to extract the inner level monad which is a computation with some kinds of monad logic and execute it.
 
+
+\begin{hcode}
+getValidPassword :: ErrorT String IO String
+getValidPassword = do s <- lift getLine
+                      guard (isValid s)
+                      return s
+                      	where isValid = (>5).length
+ 
+askPassword :: ErrorT String IO ()
+askPassword = do lift $ putStrLn "Insert your new password:"
+                 value <- getValidPassword
+                 lift $ putStrLn "your password is valid"
+                              
+runProgram = runErrorT askpassword                
+\end{hcode}
+
+The code above shows how a problem written by Error transformer \textbf{ErrorT} combines error handling as well as IO action.The runErrorT will extract the message which is either left value of right value.By combining\\ \textbf{getValidPassword} together with lifted IO action,the logic that the string "your password is valid" will not return if user's input string is shorter than 5 has been implemented easily an elegantly because the bind operating itself implies failure values bypass the follow computation.
+
 \section{Combining Monads}
-Monad transformers create a new monad by extending an existing monad with additional operations, thereby allowing new programming language features to be de defined while preserving any language definition given for the original monad.[Modular Compilers Based on Monad Transformers]\\ 
+Monad transformers create a new monad by extending an existing monad with additional operations, thereby allowing new programming language features to be de defined while preserving any language definition given for the original monad.\cite{modular} \\ 
 
 As monad guarantees the correctness of the computation with the type restriction,namely we can not combine two computations one with "stateful" while other with IO logic into one building block,we might need addition functions like lift and liftIO together with monad transformer to fix the type problem .\\
 

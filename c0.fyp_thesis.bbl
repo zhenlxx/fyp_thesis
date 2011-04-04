@@ -1,0 +1,106 @@
+\begin{thebibliography}{10}
+
+\bibitem{aho1986compilers}
+A.V. Aho, R.~Sethi, and J.D. Ullman.
+\newblock {Compilers: principles, techniques, and tools}.
+\newblock {\em Reading, MA,}, 1986.
+
+\bibitem{three_model}
+N.~Chomsky.
+\newblock Three models for the description of language.
+\newblock {\em Information Theory, {IRE} Transactions on}, 2(3).
+
+\bibitem{logic}
+A.~Church.
+\newblock A set of postulates for the foundation of logic.
+\newblock {\em The Annals of Mathematics}, 33(2), 1932.
+
+\bibitem{unsolvable}
+A.~Church.
+\newblock An unsolvable problem of elementary number theory.
+\newblock {\em American journal of mathematics}, 58(2):345--363, 1936.
+
+\bibitem{alex}
+C.~Dornan and I.~Jones.
+\newblock {\em Alex User Guide}.
+\newblock 2003.
+
+\bibitem{happy}
+A.~Gill and S.~Marlow.
+\newblock Happy: The parser generator for haskell.
+\newblock {\em University of Glasgow}, 1995.
+
+\bibitem{step}
+M.~Grabm{\textbackslash}ller.
+\newblock Monad transformers step by step.
+\newblock {\em Draft paper. Available online http://uebb. cs. tu-berlin.
+  de/{\textbackslash} {magr/pub/Transformers.} pdf}, 2006.
+
+\bibitem{intro}
+P.~Hudak and J.~H Fasel.
+\newblock A gentle introduction to haskell.
+\newblock {\em {ACM} Sigplan Notices}, 27(5), 1992.
+
+\bibitem{history}
+P.~Hudak, J.~Hughes, S.~P Jones, and P.~Wadler.
+\newblock A history of haskell: being lazy with class.
+\newblock In {\em Proceedings of the third {ACM} {SIGPLAN} conference on
+  History of programming languages}, 2007.
+
+\bibitem{why}
+J.~Hughes.
+\newblock Why functional programming matters.
+\newblock {\em The computer journal}, 32(2):98, 1989.
+
+\bibitem{overloading}
+M.~Jones.
+\newblock Functional programming with overloading and higher-order
+  polymorphism.
+\newblock {\em Advanced Functional Programming}, 1995.
+
+\bibitem{imperative}
+S.~{L.P} Jones and P.~Wadler.
+\newblock Imperative functional programming.
+\newblock 1993.
+
+\bibitem{haskell98}
+S.~P Jones and L.~Augustsson.
+\newblock Haskell 98 language and libraries-the revised report. december 2002.
+\newblock {\em {URL} http://www.haskell.org/onlinereport}.
+
+\bibitem{jones_wearing_2003}
+S.~P Jones and L.~Simon.
+\newblock Wearing the hair shirt: a retrospective on haskell.
+\newblock {\em Invited talk at {POPL}}, 206, 2003.
+
+\bibitem{lazy1}
+J.~Launchbury and S.~L~Peyton Jones.
+\newblock Lazy functional state threads.
+\newblock In {\em Proceedings of the {ACM} {SIGPLAN} 1994 conference on
+  Programming language design and implementation}, 1994.
+
+\bibitem{leijen2001parsec}
+D.~Leijen.
+\newblock {Parsec, a fast combinator parser}, 2001.
+
+\bibitem{learn_haskell}
+Miran Lipovaca.
+\newblock {\em Learn You a Haskell for Great Good!}
+\newblock 2011.
+
+\bibitem{real_world}
+B.~{O'Sullivan}, J.~Goerzen, and D.~Stewart.
+\newblock {\em Real World Haskell}.
+\newblock {O'Reilly} Media, 2008.
+
+\bibitem{pierce_basic_1991}
+B.~C Pierce.
+\newblock {\em Basic category theory for computer scientists}.
+\newblock The {MIT} Press, 1991.
+
+\bibitem{monads_for}
+P.~Wadler.
+\newblock Monads for functional programming.
+\newblock {\em Advanced Functional Programming}, 1995.
+
+\end{thebibliography}
