@@ -1,7 +1,6 @@
 \chapter{Technologies}
 \section{Parsing technologies}
 \subsection{Formal Grammar}
-
 Mathematically, formal grammar consists of:
 \begin{itemize}
 \item a finite set of terminal symbols.
@@ -20,10 +19,9 @@ In this example,we can assume that the grammar consists of two projection rules 
 
 
 \subsection{The Hierarchy of Grammars}
-Noam Chomsky has describe three model of grammar \cite{three_model} and this grammar model has significantly effect the design of computer programming language.
+Noam Chomsky has described three models of grammar \cite{three_model} and these grammar models have significantly affected the design of computer programming language.
 
-
-Chomsky define a set of rule upon the formal grammar and categorize them into different levels.
+Chomsky defines a set of rules upon the formal grammar and categorize them into different levels.
 
 The Chomsky hierarchy consists of the 4 levels:
 \begin{itemize}
@@ -32,7 +30,6 @@ The Chomsky hierarchy consists of the 4 levels:
 \item Type-2 grammars (context-free grammar). 
 \item Type-3 grammars (regular grammar).
 \end{itemize}
-
 
 
 \subsubsection{Context-Free Grammar}
@@ -53,7 +50,7 @@ duction).
 \end{itemize}
 \cite{aho1986compilers} it can be recognized by pushdown automaton.\\
 
-Content-free grammar can represent the Algebraic expressions.The table below specify a set o rules. 
+Content-free grammar can represent the algebraic expressions.The table below specify a set o rules:
 
 \begin{tabular}{|p{6cm}|p{6cm}|}
 \hline \textbf{Rules} & \textbf{Description}\\ 
@@ -73,7 +70,7 @@ Content-free grammar can represent the Algebraic expressions.The table below spe
 This grammar can, for example, generate the string 
 $$  ((a+2) == (a*2) )\&\& (a > 0)  $$
 
-can be derived be the projection rule as follow,
+can be derived from the projection rules as follow,
  
 \begin{tabular}{|l|l|}
 \hline S & the start symbol\\ 
@@ -97,30 +94,26 @@ can be derived be the projection rule as follow,
  
 
 
-
-
-
-
 \subsection{Backus–Naur Form and Extended Backus–Naur Form}
-The Backus-Naur Form(BNF) is a metalanguage to write the production rule that expressing the type-2 grammar (context-free grammar).It  restricts the appearance of terminal and non-terminal in each side of the production equation.A canonical BNF production rule may like follow,
+The Backus-Naur Form(BNF) is a metalanguage to write  production rules that express the type-2 grammar (context-free grammar).It restricts the appearance of terminal and non-terminal in each side of the production equation.A canonical BNF production rule may look like :
  \[   <symbol> ::= \_\_expression\_\_ \]
  
-The left side of the equation can only be non-terminal thus enclosed with $<>$ .The right hand side can be terminals and non-terminals,a vertical bar '|' is used to represent choice between terminal and non-terminals.\\
+The left side of the equation can only be non-terminal thus enclosed with $<>$ .The right side can be terminals and non-terminals,a vertical bar '|' is used to represent choice between terminals and non-terminals.\\
 
-The  Extended Backus–Naur Form (EBNF) and extension upon the BNF.Three regular expression qualifier is added to simplified some expression,they are,
+The  Extended Backus–Naur Form (EBNF) and extension upon the BNF.Three regular expression qualifiers are added to simplified some expressions,they are:
 \begin{itemize}
 \item ? : which means that the symbol (or group of symbols in parenthesis) to the left of the operator is
 optional (it can appear zero or one times)
 \item * : which means that something can be repeated any number of times (and possibly be skipped
 altogether)
 \item + : which means that something can appear one or more times 
-\end{itemize} \cite{book}
+\end{itemize} \cite{aho1986compilers}
 
-Recrusive rules of BNF  like 
+Recursive rules of BNF like 
 \[   1. <exp> := <exp> | sub \]
 \[	 2. <exp> := sub     \]
  
-that expressing a sequence of a particular syntactic element can be simplified using quantifier in EBNF as $ <exp>:=sub+ $
+that expressing a sequence of a particular syntactic elements can be simplified using quantifiers in EBNF to $ <exp>:=sub+ $
 
 
 
@@ -128,14 +121,19 @@ that expressing a sequence of a particular syntactic element can be simplified u
 Happy is a parser generator system for Haskell, similar to the tool `yacc' for C. Like `yacc', it takes a file containing an annotated BNF specification of a grammar and produces a Haskell module containing a parser for the grammar.
 \cite{happy}
 
-By using its own EBNF like syntax,used could write an parser description.The happy parser generator are able to recognize and compile it into Haskell source code.
+By using its own EBNF like syntax,we could write a parser description.The happy parser generator is able to recognize and compile it into Haskell source code.
 
 
 \section{Monadic Parsing using Parsec}
-In the early stage of this project,parse is build using parse C,
+In the early stage of this project,parser is built using \textbf{ParseC},
 Parsec is an industrial strength, monadic parser combinator library for Haskell. It can parse context-sensitive, infinite look-ahead grammars but it performs best on
 predictive (LL\cite{aho1986compilers}) grammars. Combinator parsing is well known in the literature
 and offers several advantages to YACC or event-based parsing. \cite{leijen2001parsec}
+
+LL grammars have the distinctive properties that they are non-ambiguous and
+not left-recursive. A grammar is LL(k) if the associated predictive parser needs
+at most k tokens lookahead to disambiguate a parse tree.\cite{real_parsec}
+
 
 Compared toe parser generator , monadic parsing has two major benifits
 1. No need to learn additional parser generator grammar since parser combinator is written in the same language. 2.parser can be adjust easily .
@@ -174,7 +172,8 @@ quickCheck (\s -> length (take5 s) == 5)
 \end{hcode}
 
 \subsection*{HUnit}
-HUnit is a unit testing framework for Haskell to test the impure code.it is similar to the JUnit tool for Java.In unit testing,it is required to provide an input and verify the output.
+HUnit is a unit testing framework for Haskell to test the impure code.it is similar to the JUnit tool for Java.In unit testing,it is required to provide an input and verify the output.\\
+ Test specification in HUnit is even more concise and flexible than in JUnit, thanks to the nature of the Haskell language.  HUnit currently includes only a text-based test controller, but the framework is designed for easy extension. \cite{hunit}
 
 
 

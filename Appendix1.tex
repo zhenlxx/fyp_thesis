@@ -1,7 +1,26 @@
-\chapter{Sample appendix title}
+\chapter{Appendix}
+\section{Environment setup}
+\begin{lstlisting}[language=bash]
+sudo apt-get install haskell-platform
+# install haskell-platform
+sudo cabal install happy
+sudo cabal install alex
 
-\section{Section title}
+cd PATH_TO_PROJECT
+#change path to project directory
 
+happy -i grammar/Grammar.y
+alex grammar/Lexer.x
+ghc --make -i"test" -i"src" -i"grammar" "src/Main.hs" -outputdir out -o yun
+#building the project
+
+rm grammar/*.o
+rm grammar/*.hi
+rm src/*.o
+rm /src/*.hi
+rm yun
+#clean up the output folder
+\end{lstlisting}
 
 % Example of how to include code. "MainWebPage.html" (in this example) should be
 % replaced with a real file name. The language parameter may also have to be changed.

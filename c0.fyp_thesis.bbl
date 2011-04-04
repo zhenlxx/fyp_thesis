@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{final}
+P.~W Abrahams.
+\newblock A final solution to the dangling else of algol 60 and related
+  languages.
+\newblock {\em Communications of the {ACM}}, 9(9):679--682, 1966.
+
 \bibitem{aho1986compilers}
 A.V. Aho, R.~Sethi, and J.D. Ullman.
 \newblock {Compilers: principles, techniques, and tools}.
@@ -25,16 +31,35 @@ C.~Dornan and I.~Jones.
 \newblock {\em Alex User Guide}.
 \newblock 2003.
 
+\bibitem{hosted}
+A.~Gill.
+\newblock A haskell hosted {DSL} for writing transformation systems.
+\newblock In {\em {Domain-Specific} Languages}, pages 285--309, 2009.
+
 \bibitem{happy}
 A.~Gill and S.~Marlow.
 \newblock Happy: The parser generator for haskell.
 \newblock {\em University of Glasgow}, 1995.
 
 \bibitem{step}
-M.~Grabm{\textbackslash}ller.
+Martin Grabm{\"u}ller.
 \newblock Monad transformers step by step.
-\newblock {\em Draft paper. Available online http://uebb. cs. tu-berlin.
-  de/{\textbackslash} {magr/pub/Transformers.} pdf}, 2006.
+\newblock 2006.
+\newblock Draft paper.
+
+\bibitem{liberate}
+D.~Harel.
+\newblock Can programming be liberated, period?
+\newblock {\em Computer}, 41(1):28--37, 2008.
+
+\bibitem{modular}
+W.~L Harrison and S.~N Kamin.
+\newblock Modular compilers based on monad transformers.
+\newblock In {\em iccl}, page 122, 1998.
+
+\bibitem{hunit}
+D.~Herington.
+\newblock {\em {HUnit} 1.0 User's Guide, 2002}.
 
 \bibitem{intro}
 P.~Hudak and J.~H Fasel.
@@ -47,10 +72,20 @@ P.~Hudak, J.~Hughes, S.~P Jones, and P.~Wadler.
 \newblock In {\em Proceedings of the third {ACM} {SIGPLAN} conference on
   History of programming languages}, 2007.
 
+\bibitem{music}
+Paul Hudak, Tom Makucevich, Syam Gadde, and Bo~Whong.
+\newblock Haskore music notation - an algebra of music -.
+\newblock {\em Journal of Functional Programming}, 6(03):465--484, 1996.
+
 \bibitem{why}
 J.~Hughes.
 \newblock Why functional programming matters.
 \newblock {\em The computer journal}, 32(2):98, 1989.
+
+\bibitem{pure}
+G.~Hutton.
+\newblock {\em Programming in Haskell}.
+\newblock Cambridge Univ Pr, 2007.
 
 \bibitem{overloading}
 M.~Jones.
@@ -83,10 +118,22 @@ J.~Launchbury and S.~L~Peyton Jones.
 D.~Leijen.
 \newblock {Parsec, a fast combinator parser}, 2001.
 
+\bibitem{real_parsec}
+D.~Leijen and E.~Meijer.
+\newblock Parsec: Direct style monadic parser combinators for the real world.
+\newblock {\em Department of Information and Computing Sciences, Utrecht
+  University, Tech. Rep. {UU-CS-2001-35}}, 2001.
+
 \bibitem{learn_haskell}
 Miran Lipovaca.
 \newblock {\em Learn You a Haskell for Great Good!}
 \newblock 2011.
+
+\bibitem{practical}
+J.~W Lloyd.
+\newblock Practical advantages of declarative programming.
+\newblock In {\em Joint Conference on Declarative Programming, {GULP-PRODE}},
+  volume~94, 1994.
 
 \bibitem{real_world}
 B.~{O'Sullivan}, J.~Goerzen, and D.~Stewart.

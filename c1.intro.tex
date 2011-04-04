@@ -1,6 +1,6 @@
 \chapter{Introduction}
 \section{Objective and Motivation}
-The objective of this project is to develop a dynamic and weak typing interpreted language using Haskell.This language is able to support the following features,
+The objective of this project is to develop a dynamic and weak typing interpreted scripting language using Haskell.This language is able to support the following features,
 \begin{itemize}
 \item basic for loop and while loop
 \item basic if-else statement
@@ -9,46 +9,45 @@ The objective of this project is to develop a dynamic and weak typing interprete
 \item polymorphic list
 \end{itemize}
 
-Furthermore, in this project,the monadic design approach is applied as Haskell is different from other object oriented language.
-
-
+Furthermore, in this project,the monadic design approach is applied as Haskell does not support object-orient paradigm.
 \section{Challenges}
-As I am using Haskell, the functional programming to do my project,the first challenge  that I have to abandon object-oriented and imperative analysis to model design my code.The second challenge is that I have to learn a new language of completely different paradigm before actually start working on my project.Learning how the compiler and interpreter work is also a major challenge of this project
+As I am using Haskell, the functional programming to do my project,the first challenge is that I have to abandon the object-oriented and imperative analysis to model design my code.The second challenge is that I have to learn a new language of a completely different paradigm before I can actually start working on the project.Learning how a compiler or interpreter work is also a major challenge of this project
 
 \section{Benefits of using Haskell} 
-Haskell is an advanced purely-functional programming language.By applying the used of Haskell to this project ,I have significantly reduce the coding time and spent most of my time to the design phrase.
+Haskell is a purely functional programming that provide promotes a more
+abstract style of programming,based upon the idea of applying functions to
+argument.\cite{pure} .By applying the used of Haskell to this project ,I have significantly reduce the coding time and spent most of my time in the design phrase.
 \\
 \\
-A pure function is a function that accepts an input and produce an output.In Object-Oriented language,program is constructed using classes and instances which encapsulate computations and states.Haskell program is constructed by functions as function is the first class member in Haskell.Typically the main function is defined in terms of other functions, which in turn are defined in terms of still more functions, until at the bottom level the functions are language primitives. All of these functions are much like ordinary mathematical functions.  \cite{why} \cite{overloading}
+A pure function is a function that accepts an input and produce an output.In Object-Oriented language,programs are constructed using classes and instances which encapsulate computations and states.Haskell program is constructed by functions as function is the first class member in Haskell.Typically the main function is defined in terms of other functions, which in turn are defined in terms of still more functions, until at the bottom level the functions are language primitives. All of these functions are much like ordinary mathematical functions.  \cite{why} \cite{overloading}
 \section{Development Methodology}
-Iterative and incremental development methodology is used in the entire development process.This project has been initially identified to multiple iterations and each iteration contains three major phrases inducing research ,development and testing.\\
+Iterative and incremental development methodology is used in the entire development process.This project has been initially identified to multiple iterations and each iteration contains three major phrases inducing research, development and testing.\\
 
 The iterative and incremental development is a cyclic development process.
 It’s also the heart of rational unified process, Extreme programming and
 agile software development. However, I would like to used the iterative and
 incremental approach in my project rather a completed agile development or
-RUP cycle for the reason that it’s not possible to fulfil the requirement of a
+RUP cycle for the reason that it is not possible to fulfil the requirement of a
 completed industrial software development methodology. For instance, it’s
 hard to visualize my architecture using the UML by following RUP guide
 line in my project.\\
 
 
-Researches have been done on investing some useful Haskell library like Parsec ,Happy,Alex and HUnit.
+Researches have been done on investing some useful Haskell library like Parsec ,Happy,Alex and HUnit which will be discussed in chapter 2.
 \\
 \\
-Eclipse with EclipseFP plug-in provides support for source code and package management in Eclipse.To keep tract of the development process,I make use of \textbf{git} a source control tool to version all the source file.
+Eclipse with EclipseFP plug-in provides support for source code and package management in functionality.To track the development process,I make use of \textbf{git} a source control tool to version all the source files.
 
 \section{Development Environment}
-All the development  will be base on the Haskell platform.The Haskell Platform is a comprehensive, robust and cross platform  environment for Haskell developer.
+All the development  will be based on the Haskell platform.The Haskell Platform is a comprehensive, robust and cross platform  environment for Haskell developer.
 The Haskell platform contains the following component:
 \begin{enumerate}
 \item Glasgow Haskell compiler (GHC) and its runtime environment.
 \item Cabal.An package management system.
 \item Haddock.A document tool like javadoc to jdk.
-\item The GHCi debugger.
-An interactive, imperative-style debugger for Haskell.
+\item The GHCi debugger.An interactive, imperative-style debugger for Haskell.
 \end{enumerate}
-The platform can be install in different platform include Windows,Linux and Mac OS X.I am using Ubuntu Linux as my development platform.
+The platform can be installed in different platform include Windows,Linux and Mac OS X.I use Ubuntu Linux 10.10 as my development platform.
 
 The Haskell platform made it convenient to manage package dependency since its release in 2010,while at the early 00s,the motto of Haskell community was "avoid success at all cost"\cite{jones_wearing_2003}.
 
@@ -56,7 +55,7 @@ The Haskell platform made it convenient to manage package dependency since its r
 \section{Code Formats}
 In this thesis,two types of code will be listed in different formats.
 
-Code listed without line numbers illustrates the design of the interpreter or other Haskell concept.Most of it are Haskell code,which looks like,
+Code listed without line numbers illustrates the design of the interpreter or other Haskell concept like monad.Most of them are Haskell code,which looks like,
 \begin{hcode}
  return a >>= k  ==  k a
  m >>= return  ==  m
@@ -64,8 +63,7 @@ Code listed without line numbers illustrates the design of the interpreter or ot
 \end{hcode}
 
 
-Code listed with line numbers are example of \textbf{yun} ,the programming language designed in this project.It looks like,
-
+Code listed with line numbers is example of \textbf{yun} ,the programming language designed in this project.It looks like,
 \begin{lstlisting}[language=SQL]
 program main (){
 	result = fib (10);
