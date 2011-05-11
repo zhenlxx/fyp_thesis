@@ -1,0 +1,52 @@
+\chapter{Haskell}
+\section{History}
+Lambda calculus was introduced by Alonzo Church in the 1930s as part of
+an investigation into the foundations of mathematics. [4]
+In 1936 Church isolated and published just the portion relevant to computa-
+tion, what is now called the untyped lambda calculus. [5]
+
+
+Following the release of Miranda by in 1985, interest in lazy functional
+languages grew: by 1987, more than a dozen non-strict, purely functional
+programming languages existed. Of these, Miranda was the most widely
+used, but was not in the public domain.
+At the conference on Functional Programming Languages and Computer Ar-
+chitecture (FPCA ’87) in Portland, Oregon, a meeting was held during which
+participants formed a strong consensus that a committee should be formed
+to define an open standard for such languages.[20]
+
+
+The first version of Haskell (”Haskell 1.0”) was defined in 1990. [14] The
+latest Haskell version describe in the Haskell report 2010,the implementation
+of the latest version Haskell Platform is released in Feb 2011.
+To summarize it ,Haskell has evolved continuously in recent years.
+
+Category theory is a general theory that examine and organize mathematical
+object like set ,function,function domains Cartesian-set.
+
+
+\section{Haskell and Category Theory}
+Category theory is a general theory that examine and organize mathematical object like set ,function,function domains Cartesian-set.
+
+A Category $C $ in category theory is defined below :
+\begin{enumerate}
+\item a collection of objects 
+\item a collection of arrows (often call morphism) 
+\item operations assigning to each arrow $f$ an object $dom\;f$,its domain ,and an object $cod\;f$,its co domain.
+\item a composition operator assigning to each pair of arrows $f and g$,with $cod\;f = dom\;g$,a composite arrow $ g \circ f:dom\;f \rightarrow  cod\;g$ , satisfying the following associative law: \\
+For any arrow $f: A \rightarrow B,g:B \rightarrow C,and\;h: C\rightarrow D$(with A,B,C and D not necessarily distinct),
+$$h\circ (g\circ f) = (h\circ g)\circ f$$
+\item for each object A, an identify arrow $id_{a}: A \rightarrow A$ satisfying the following identity law:\\
+For any arrow $ f: A \rightarrow B,$ 
+$$ id_{a} \circ f = f  \;and\;  f\circ id_{a} = f. $$
+\end{enumerate}\cite{pierce_basic_1991}
+
+\section{Algebraic Data Type}
+The algebraic data type allow programming to define a data type that has
+more than one constructor. For example , a boolean value can be defined as,
+
+
+\section{Type Classes}
+
+
+\section{Higher Order Functions}
